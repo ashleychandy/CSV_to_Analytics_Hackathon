@@ -44,3 +44,27 @@
 [SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
 [parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
 (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:40:20,569 - services.etl_service - INFO - Successfully extracted 5 records from data\input\sample_transactions.csv
+2024-12-21 12:40:20,575 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:40:20,585 - services.etl_service - INFO - Successfully loaded 5 records into database
+2024-12-21 12:40:20,585 - services.etl_service - INFO - ETL process completed successfully for data\input\sample_transactions.csv
+2024-12-21 12:40:22,492 - services.etl_service - INFO - Successfully extracted 5 records from data/input\sample_transactions.csv
+2024-12-21 12:40:22,497 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:40:22,500 - services.etl_service - INFO - Successfully loaded 5 records into database
+2024-12-21 12:40:22,500 - services.etl_service - INFO - ETL process completed successfully for data/input\sample_transactions.csv
+2024-12-21 12:40:22,502 - services.etl_service - INFO - Successfully extracted 2 records from data/input\smalldata.csv
+2024-12-21 12:40:22,507 - services.etl_service - INFO - Successfully transformed 2 records
+2024-12-21 12:40:22,513 - services.etl_service - INFO - Successfully loaded 2 records into database
+2024-12-21 12:40:22,513 - services.etl_service - INFO - ETL process completed successfully for data/input\smalldata.csv
+2024-12-21 12:40:42,566 - services.etl_service - INFO - Successfully extracted 2 records from data\input\smalldata.csv
+2024-12-21 12:40:42,572 - services.etl_service - INFO - Successfully transformed 2 records
+2024-12-21 12:40:42,575 - services.etl_service - INFO - Successfully loaded 2 records into database
+2024-12-21 12:40:42,575 - services.etl_service - INFO - ETL process completed successfully for data\input\smalldata.csv
+2024-12-21 12:40:43,467 - services.etl_service - INFO - Successfully extracted 5 records from data/input\sample_transactions.csv
+2024-12-21 12:40:43,472 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:40:43,487 - services.etl_service - INFO - Successfully loaded 5 records into database
+2024-12-21 12:40:43,487 - services.etl_service - INFO - ETL process completed successfully for data/input\sample_transactions.csv
+2024-12-21 12:40:43,489 - services.etl_service - INFO - Successfully extracted 2 records from data/input\smalldata.csv
+2024-12-21 12:40:43,493 - services.etl_service - INFO - Successfully transformed 2 records
+2024-12-21 12:40:43,499 - services.etl_service - INFO - Successfully loaded 2 records into database
+2024-12-21 12:40:43,499 - services.etl_service - INFO - ETL process completed successfully for data/input\smalldata.csv
