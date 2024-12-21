@@ -6,6 +6,7 @@
       rel="stylesheet"
       href="{{ url_for('static', path='css/style.css') }}"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <div class="container">
@@ -18,6 +19,7 @@
 
       <div class="actions">
         <button onclick="runETL()">Run ETL Process</button>
+        <button onclick="exportData()">Export Data</button>
       </div>
 
       <div class="metrics">
@@ -45,6 +47,59 @@
           <button type="submit">Upload CSV</button>
         </form>
         <div id="upload-status"></div>
+      </div>
+
+      <div class="analytics-panel">
+        <h2>Analytics</h2>
+        <div class="analytics-grid">
+          <div class="analytics-card">
+            <h3>Total Sales</h3>
+            <div id="total-sales">0</div>
+          </div>
+          <div class="analytics-card">
+            <h3>Total Transactions</h3>
+            <div id="total-transactions">0</div>
+          </div>
+          <div class="analytics-card">
+            <h3>Average Transaction Value</h3>
+            <div id="avg-transaction">0</div>
+          </div>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-container">
+            <h3>Sales by Tender Type</h3>
+            <canvas id="tenderChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Sales by Store</h3>
+            <canvas id="storeChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-panel">
+        <h2>Transaction Data</h2>
+        <div class="table-container">
+          <table id="data-table">
+            <thead>
+              <tr>
+                <th>Store</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Transaction #</th>
+                <th>Amount</th>
+                <th>Quantity</th>
+                <th>Tender</th>
+              </tr>
+            </thead>
+            <tbody id="data-body"></tbody>
+          </table>
+          <div class="pagination">
+            <button onclick="previousPage()">&laquo; Previous</button>
+            <span id="page-info">Page 1</span>
+            <button onclick="nextPage()">Next &raquo;</button>
+          </div>
+        </div>
       </div>
     </div>
 

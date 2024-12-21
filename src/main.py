@@ -3,7 +3,7 @@ import logging
 from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker, Session
 from models.pos_transaction import Base, POSTransaction
 from services.etl_service import ETLService
@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import json
 from datetime import datetime
+from typing import List, Dict
 
 # Configure logging
 logging.basicConfig(
@@ -165,6 +166,125 @@ async def process_files(db: Session = Depends(get_db)):
         return {"message": f"Processed {processed_count} files successfully"}
     except Exception as e:
         etl_status.update(f"Error: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/data")
+async def get_data(
+    page: int = 1,
+    per_page: int = 10,
+    db: Session = Depends(get_db)
+):
+    """Get paginated transaction data"""
+    offset = (page - 1) * per_page
+    total = db.query(POSTransaction).count()
+    transactions = db.query(POSTransaction).offset(offset).limit(per_page).all()
+    
+    return {
+        "data": [
+            {
+                "id": t.id,
+                "store_code": t.store_code,
+                "store_display_name": t.store_display_name,
+                "trans_date": t.trans_date.isoformat(),
+                "trans_time": t.trans_time,
+                "trans_no": t.trans_no,
+                "net_sales_header_values": t.net_sales_header_values,
+                "quantity": t.quantity,
+                "tender": t.tender
+            }
+            for t in transactions
+        ],
+        "total": total,
+        "page": page,
+        "per_page": per_page,
+        "total_pages": (total + per_page - 1) // per_page
+    }
+
+@app.get("/api/analytics")
+async def get_analytics(db: Session = Depends(get_db)):
+    """Get transaction analytics"""
+    try:
+        # Total sales
+        total_sales = db.query(func.sum(POSTransaction.net_sales_header_values)).scalar() or 0
+        
+        # Total transactions
+        total_transactions = db.query(POSTransaction).count()
+        
+        # Sales by tender type
+        sales_by_tender = db.query(
+            POSTransaction.tender,
+            func.count(POSTransaction.id).label('count'),
+            func.sum(POSTransaction.net_sales_header_values).label('total')
+        ).group_by(POSTransaction.tender).all()
+        
+        # Sales by store
+        sales_by_store = db.query(
+            POSTransaction.store_code,
+            POSTransaction.store_display_name,
+            func.count(POSTransaction.id).label('count'),
+            func.sum(POSTransaction.net_sales_header_values).label('total')
+        ).group_by(POSTransaction.store_code).all()
+        
+        return {
+            "total_sales": float(total_sales),
+            "total_transactions": total_transactions,
+            "average_transaction_value": float(total_sales / total_transactions) if total_transactions > 0 else 0,
+            "sales_by_tender": [
+                {
+                    "tender": tender or "Unknown",
+                    "count": count,
+                    "total": float(total)
+                }
+                for tender, count, total in sales_by_tender
+            ],
+            "sales_by_store": [
+                {
+                    "store_code": store_code,
+                    "store_name": store_name,
+                    "count": count,
+                    "total": float(total)
+                }
+                for store_code, store_name, count, total in sales_by_store
+            ]
+        }
+    except Exception as e:
+        logger.error(f"Error getting analytics: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/export")
+async def export_data(db: Session = Depends(get_db)):
+    """Export all transaction data as CSV"""
+    try:
+        transactions = db.query(POSTransaction).all()
+        
+        if not transactions:
+            raise HTTPException(status_code=404, detail="No data to export")
+        
+        # Convert to list of dictionaries
+        data = [
+            {
+                "id": t.id,
+                "store_code": t.store_code,
+                "store_display_name": t.store_display_name,
+                "trans_date": t.trans_date.isoformat(),
+                "trans_time": t.trans_time,
+                "trans_no": t.trans_no,
+                "till_no": t.till_no,
+                "discount_header": t.discount_header,
+                "tax_header": t.tax_header,
+                "net_sales_header_values": t.net_sales_header_values,
+                "quantity": t.quantity,
+                "trans_type": t.trans_type,
+                "tender": t.tender,
+                "dm_load_date": t.dm_load_date,
+                "dm_load_delta_id": t.dm_load_delta_id
+            }
+            for t in transactions
+        ]
+        
+        return data
+    except Exception as e:
+        logger.error(f"Error exporting data: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
