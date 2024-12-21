@@ -130,13 +130,51 @@ async def shutdown_event():
 # Routes
 @app.get("/")
 async def root(request: Request):
-    """Redirect to dashboard"""
-    return templates.TemplateResponse("dashboard.html", {"request": request, "status": etl_status.status})
+    """Render the dashboard"""
+    return templates.TemplateResponse(
+        "dashboard.html", 
+        {
+            "request": request, 
+            "status": etl_status.status,
+            "active_page": "dashboard"
+        }
+    )
 
-@app.get("/dashboard")
-async def dashboard(request: Request):
-    """Show ETL dashboard"""
-    return templates.TemplateResponse("dashboard.html", {"request": request, "status": etl_status.status})
+@app.get("/upload")
+async def upload_page(request: Request):
+    """Render the upload page"""
+    return templates.TemplateResponse(
+        "upload.html", 
+        {
+            "request": request, 
+            "status": etl_status.status,
+            "active_page": "upload"
+        }
+    )
+
+@app.get("/transactions")
+async def transactions_page(request: Request):
+    """Render the transactions page"""
+    return templates.TemplateResponse(
+        "transactions.html", 
+        {
+            "request": request, 
+            "status": etl_status.status,
+            "active_page": "transactions"
+        }
+    )
+
+@app.get("/analytics")
+async def analytics_page(request: Request):
+    """Render the analytics page"""
+    return templates.TemplateResponse(
+        "analytics.html", 
+        {
+            "request": request, 
+            "status": etl_status.status,
+            "active_page": "analytics"
+        }
+    )
 
 @app.get("/api/status")
 async def get_status():

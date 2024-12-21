@@ -1,0 +1,435 @@
+{% extends "base.html" %} {% block title %}Analytics{% endblock %} {% block
+content %}
+<div class="row">
+  <!-- Summary Cards -->
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Total Revenue</h5>
+        <h2 class="card-text" id="totalRevenue">$0</h2>
+        <div class="d-flex align-items-center">
+          <span class="text-success me-2" id="revenueGrowth">
+            <i class="bx bx-up-arrow-alt"></i> 0%
+          </span>
+          <small class="text-muted">vs last period</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Average Transaction</h5>
+        <h2 class="card-text" id="avgTransaction">$0</h2>
+        <div class="d-flex align-items-center">
+          <span class="text-success me-2" id="avgTransactionGrowth">
+            <i class="bx bx-up-arrow-alt"></i> 0%
+          </span>
+          <small class="text-muted">vs last period</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Total Transactions</h5>
+        <h2 class="card-text" id="totalTransactions">0</h2>
+        <div class="d-flex align-items-center">
+          <span class="text-success me-2" id="transactionsGrowth">
+            <i class="bx bx-up-arrow-alt"></i> 0%
+          </span>
+          <small class="text-muted">vs last period</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Active Stores</h5>
+        <h2 class="card-text" id="activeStores">0</h2>
+        <div class="d-flex align-items-center">
+          <span class="text-success me-2" id="storesGrowth">
+            <i class="bx bx-up-arrow-alt"></i> 0%
+          </span>
+          <small class="text-muted">vs last period</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Revenue Trend -->
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="card-title">Revenue Trend</h5>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              onclick="updateTrendChart('daily')"
+            >
+              Daily
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary active"
+              onclick="updateTrendChart('weekly')"
+            >
+              Weekly
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              onclick="updateTrendChart('monthly')"
+            >
+              Monthly
+            </button>
+          </div>
+        </div>
+        <canvas id="revenueTrendChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Sales by Store -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Sales by Store</h5>
+        <div class="table-responsive" style="height: 300px">
+          <table class="table table-hover" id="storeTable">
+            <thead>
+              <tr>
+                <th>Store</th>
+                <th>Sales</th>
+                <th>Transactions</th>
+                <th>Avg. Transaction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Store data will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Methods -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Payment Methods</h5>
+        <canvas id="paymentMethodsChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Hourly Distribution -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Hourly Sales Distribution</h5>
+        <canvas id="hourlyDistributionChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transaction Size Distribution -->
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Transaction Size Distribution</h5>
+        <canvas id="transactionSizeChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Top Products -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="card-title">Performance Insights</h5>
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            onclick="exportInsights()"
+          >
+            <i class="bx bx-download"></i> Export Report
+          </button>
+        </div>
+        <div class="row" id="insights">
+          <!-- Insights will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    loadAnalytics();
+  });
+
+  async function loadAnalytics() {
+    try {
+      const response = await fetch("/api/analytics");
+      const data = await response.json();
+
+      // Update summary cards
+      updateSummaryCards(data);
+
+      // Update charts
+      updateRevenueTrendChart(data);
+      updatePaymentMethodsChart(data.sales_by_tender);
+      updateStoreTable(data.sales_by_store);
+      updateHourlyDistributionChart();
+      updateTransactionSizeChart();
+      generateInsights(data);
+    } catch (error) {
+      console.error("Error loading analytics:", error);
+      showAlert("Error loading analytics data", "danger");
+    }
+  }
+
+  function updateSummaryCards(data) {
+    document.getElementById("totalRevenue").textContent = formatCurrency(
+      data.total_sales
+    );
+    document.getElementById("avgTransaction").textContent = formatCurrency(
+      data.average_transaction_value
+    );
+    document.getElementById("totalTransactions").textContent =
+      data.total_transactions.toLocaleString();
+    document.getElementById("activeStores").textContent =
+      data.sales_by_store.length;
+  }
+
+  function updateRevenueTrendChart(data) {
+    const ctx = document.getElementById("revenueTrendChart").getContext("2d");
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4"], // Replace with actual data
+        datasets: [
+          {
+            label: "Revenue",
+            data: [10000, 15000, 12000, 18000], // Replace with actual data
+            borderColor: "rgba(75, 192, 192, 1)",
+            tension: 0.4,
+            fill: false,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              callback: (value) => "$" + value.toLocaleString(),
+            },
+          },
+        },
+      },
+    });
+  }
+
+  function updatePaymentMethodsChart(data) {
+    const ctx = document.getElementById("paymentMethodsChart").getContext("2d");
+    new Chart(ctx, {
+      type: "doughnut",
+      data: {
+        labels: data.map((item) => item.tender),
+        datasets: [
+          {
+            data: data.map((item) => item.total),
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.5)",
+              "rgba(54, 162, 235, 0.5)",
+              "rgba(255, 206, 86, 0.5)",
+              "rgba(75, 192, 192, 0.5)",
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: "right",
+          },
+        },
+      },
+    });
+  }
+
+  function updateStoreTable(data) {
+    const tbody = document
+      .getElementById("storeTable")
+      .getElementsByTagName("tbody")[0];
+    tbody.innerHTML = data
+      .map(
+        (store) => `
+        <tr>
+            <td>${store.store_name}</td>
+            <td>${formatCurrency(store.total)}</td>
+            <td>${store.count.toLocaleString()}</td>
+            <td>${formatCurrency(store.total / store.count)}</td>
+        </tr>
+    `
+      )
+      .join("");
+  }
+
+  function updateHourlyDistributionChart() {
+    const ctx = document
+      .getElementById("hourlyDistributionChart")
+      .getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: Array.from({ length: 24 }, (_, i) => `${i}:00`),
+        datasets: [
+          {
+            label: "Sales",
+            data: Array.from({ length: 24 }, () =>
+              Math.floor(Math.random() * 1000)
+            ), // Replace with actual data
+            backgroundColor: "rgba(75, 192, 192, 0.5)",
+            borderColor: "rgba(75, 192, 192, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+
+  function updateTransactionSizeChart() {
+    const ctx = document
+      .getElementById("transactionSizeChart")
+      .getContext("2d");
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["$0-20", "$21-50", "$51-100", "$101-200", "$201+"],
+        datasets: [
+          {
+            label: "Number of Transactions",
+            data: [300, 500, 200, 100, 50], // Replace with actual data
+            backgroundColor: "rgba(54, 162, 235, 0.5)",
+            borderColor: "rgba(54, 162, 235, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+
+  function generateInsights(data) {
+    const insights = document.getElementById("insights");
+
+    // Calculate insights
+    const avgTransactionValue = data.total_sales / data.total_transactions;
+    const topStore = data.sales_by_store.reduce((a, b) =>
+      a.total > b.total ? a : b
+    );
+    const topPaymentMethod = data.sales_by_tender.reduce((a, b) =>
+      a.total > b.total ? a : b
+    );
+
+    insights.innerHTML = `
+        <div class="col-md-4">
+            <div class="alert alert-info">
+                <h6 class="alert-heading">Top Performing Store</h6>
+                <p class="mb-0">${topStore.store_name} with ${formatCurrency(
+      topStore.total
+    )} in sales</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-success">
+                <h6 class="alert-heading">Most Popular Payment Method</h6>
+                <p class="mb-0">${topPaymentMethod.tender} (${(
+      (topPaymentMethod.total / data.total_sales) *
+      100
+    ).toFixed(1)}% of sales)</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="alert alert-warning">
+                <h6 class="alert-heading">Average Transaction Value</h6>
+                <p class="mb-0">${formatCurrency(avgTransactionValue)}</p>
+            </div>
+        </div>
+    `;
+  }
+
+  function updateTrendChart(period) {
+    // Update active button
+    document.querySelectorAll(".btn-group .btn").forEach((btn) => {
+      btn.classList.remove("active");
+    });
+    event.target.classList.add("active");
+
+    // Update chart data based on period
+    // Implementation needed
+  }
+
+  function exportInsights() {
+    // Implementation needed for exporting insights as PDF or Excel
+    console.log("Exporting insights...");
+  }
+
+  // Utility functions
+  function formatCurrency(amount) {
+    return (
+      "$" +
+      Number(amount).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    );
+  }
+
+  function showAlert(message, type) {
+    // Implementation of alert display
+    console.log(`${type}: ${message}`);
+  }
+</script>
+{% endblock %}

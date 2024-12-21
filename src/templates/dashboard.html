@@ -1,108 +1,246 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>ETL Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', path='css/style.css') }}"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <h1>ETL Process Monitor</h1>
-
-      <div class="status-panel">
-        <h2>Current Status</h2>
-        <div id="status">{{ status }}</div>
+{% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block
+content %}
+<div class="row mb-4">
+  <!-- Summary Cards -->
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Transactions</h5>
+        <h2 class="card-text" id="totalTransactions">0</h2>
+        <p class="card-text text-muted">All time</p>
       </div>
-
-      <div class="actions">
-        <button onclick="runETL()">Run ETL Process</button>
-        <button onclick="exportData()">Export Data</button>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Total Sales</h5>
+        <h2 class="card-text" id="totalSales">$0</h2>
+        <p class="card-text text-muted">All time</p>
       </div>
-
-      <div class="metrics">
-        <h2>System Metrics</h2>
-        <div class="metric-grid">
-          <div class="metric-card">
-            <h3>Processed Records</h3>
-            <div id="processed-count">0</div>
-          </div>
-          <div class="metric-card">
-            <h3>Processing Time</h3>
-            <div id="processing-time">0s</div>
-          </div>
-          <div class="metric-card">
-            <h3>Last Update</h3>
-            <div id="last-update">Never</div>
-          </div>
-        </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Average Transaction</h5>
+        <h2 class="card-text" id="avgTransaction">$0</h2>
+        <p class="card-text text-muted">Per transaction</p>
       </div>
-
-      <div class="upload-panel">
-        <h2>Upload Transactions</h2>
-        <form id="upload-form" enctype="multipart/form-data">
-          <input type="file" id="csv-file" accept=".csv" />
-          <button type="submit">Upload CSV</button>
-        </form>
-        <div id="upload-status"></div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Processing Status</h5>
+        <h2 class="card-text" id="processingStatus">Idle</h2>
+        <p class="card-text text-muted" id="lastUpdate">Last update: Never</p>
       </div>
+    </div>
+  </div>
+</div>
 
-      <div class="analytics-panel">
-        <h2>Analytics</h2>
-        <div class="analytics-grid">
-          <div class="analytics-card">
-            <h3>Total Sales</h3>
-            <div id="total-sales">0</div>
-          </div>
-          <div class="analytics-card">
-            <h3>Total Transactions</h3>
-            <div id="total-transactions">0</div>
-          </div>
-          <div class="analytics-card">
-            <h3>Average Transaction Value</h3>
-            <div id="avg-transaction">0</div>
-          </div>
-        </div>
-        <div class="charts-grid">
-          <div class="chart-container">
-            <h3>Sales by Tender Type</h3>
-            <canvas id="tenderChart"></canvas>
-          </div>
-          <div class="chart-container">
-            <h3>Sales by Store</h3>
-            <canvas id="storeChart"></canvas>
-          </div>
-        </div>
+<div class="row mb-4">
+  <!-- Charts -->
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sales by Store</h5>
+        <canvas id="salesByStoreChart"></canvas>
       </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Sales by Payment Method</h5>
+        <canvas id="salesByTenderChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="data-panel">
-        <h2>Transaction Data</h2>
-        <div class="table-container">
-          <table id="data-table">
+<div class="row">
+  <!-- Recent Transactions -->
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Recent Transactions</h5>
+        <div class="table-responsive">
+          <table class="table table-hover">
             <thead>
               <tr>
-                <th>Store</th>
                 <th>Date</th>
-                <th>Time</th>
+                <th>Store</th>
                 <th>Transaction #</th>
                 <th>Amount</th>
-                <th>Quantity</th>
-                <th>Tender</th>
+                <th>Payment Method</th>
+                <th>Status</th>
               </tr>
             </thead>
-            <tbody id="data-body"></tbody>
+            <tbody id="recentTransactions">
+              <!-- Transactions will be loaded here -->
+            </tbody>
           </table>
-          <div class="pagination">
-            <button onclick="previousPage()">&laquo; Previous</button>
-            <span id="page-info">Page 1</span>
-            <button onclick="nextPage()">Next &raquo;</button>
-          </div>
+        </div>
+        <div class="text-center mt-3">
+          <a href="/transactions" class="btn btn-primary"
+            >View All Transactions</a
+          >
         </div>
       </div>
     </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Function to update dashboard data
+    async function updateDashboard() {
+      try {
+        // Get analytics data
+        const analyticsResponse = await fetch("/api/analytics");
+        const analytics = await analyticsResponse.json();
 
-    <script src="{{ url_for('static', path='js/dashboard.js') }}"></script>
-  </body>
-</html>
+        // Update summary cards
+        document.getElementById("totalTransactions").textContent =
+          analytics.total_transactions.toLocaleString();
+        document.getElementById(
+          "totalSales"
+        ).textContent = `$${analytics.total_sales.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}`;
+        document.getElementById(
+          "avgTransaction"
+        ).textContent = `$${analytics.average_transaction_value.toLocaleString(
+          undefined,
+          { minimumFractionDigits: 2, maximumFractionDigits: 2 }
+        )}`;
+
+        // Update charts
+        updateSalesByStoreChart(analytics.sales_by_store);
+        updateSalesByTenderChart(analytics.sales_by_tender);
+
+        // Get recent transactions
+        const transactionsResponse = await fetch("/api/data?page=1&per_page=5");
+        const transactions = await transactionsResponse.json();
+        updateRecentTransactions(transactions.data);
+
+        // Get processing status
+        const statusResponse = await fetch("/api/status");
+        const status = await statusResponse.json();
+        document.getElementById("processingStatus").textContent = status.status;
+        document.getElementById(
+          "lastUpdate"
+        ).textContent = `Last update: ${new Date(
+          status.last_update
+        ).toLocaleString()}`;
+      } catch (error) {
+        console.error("Error updating dashboard:", error);
+      }
+    }
+
+    // Function to update sales by store chart
+    function updateSalesByStoreChart(data) {
+      const ctx = document.getElementById("salesByStoreChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: data.map((item) => item.store_name),
+          datasets: [
+            {
+              label: "Sales",
+              data: data.map((item) => item.total),
+              backgroundColor: "rgba(54, 162, 235, 0.5)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: (value) => `$${value.toLocaleString()}`,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // Function to update sales by tender chart
+    function updateSalesByTenderChart(data) {
+      const ctx = document
+        .getElementById("salesByTenderChart")
+        .getContext("2d");
+      new Chart(ctx, {
+        type: "pie",
+        data: {
+          labels: data.map((item) => item.tender),
+          datasets: [
+            {
+              data: data.map((item) => item.total),
+              backgroundColor: [
+                "rgba(255, 99, 132, 0.5)",
+                "rgba(54, 162, 235, 0.5)",
+                "rgba(255, 206, 86, 0.5)",
+                "rgba(75, 192, 192, 0.5)",
+              ],
+              borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+              ],
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: (context) =>
+                  `${context.label}: $${context.raw.toLocaleString()}`,
+              },
+            },
+          },
+        },
+      });
+    }
+
+    // Function to update recent transactions table
+    function updateRecentTransactions(transactions) {
+      const tbody = document.getElementById("recentTransactions");
+      tbody.innerHTML = transactions
+        .map(
+          (t) => `
+            <tr>
+                <td>${new Date(t.trans_date).toLocaleDateString()}</td>
+                <td>${t.store_display_name}</td>
+                <td>${t.trans_no}</td>
+                <td>$${t.net_sales_header_values.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}</td>
+                <td>${t.tender || "Unknown"}</td>
+                <td><span class="badge bg-success">Completed</span></td>
+            </tr>
+        `
+        )
+        .join("");
+    }
+
+    // Initial update
+    updateDashboard();
+
+    // Update every 30 seconds
+    setInterval(updateDashboard, 30000);
+  });
+</script>
+{% endblock %}

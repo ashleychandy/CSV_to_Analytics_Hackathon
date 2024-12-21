@@ -1,0 +1,443 @@
+{% extends "base.html" %} {% block title %}Transactions{% endblock %} {% block
+content %}
+<div class="row">
+  <div class="col-12">
+    <!-- Filters Card -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Filters</h5>
+        <form id="filterForm" class="row g-3">
+          <div class="col-md-3">
+            <label class="form-label">Date Range</label>
+            <div class="input-group">
+              <input type="date" class="form-control" id="startDate" />
+              <span class="input-group-text">to</span>
+              <input type="date" class="form-control" id="endDate" />
+            </div>
+          </div>
+          <div class="col-md-2">
+            <label for="storeFilter" class="form-label">Store</label>
+            <select class="form-select" id="storeFilter">
+              <option value="">All Stores</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="tenderFilter" class="form-label">Payment Method</label>
+            <select class="form-select" id="tenderFilter">
+              <option value="">All Methods</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="amountFilter" class="form-label">Amount Range</label>
+            <select class="form-select" id="amountFilter">
+              <option value="">All Amounts</option>
+              <option value="0-50">$0 - $50</option>
+              <option value="51-100">$51 - $100</option>
+              <option value="101-500">$101 - $500</option>
+              <option value="501+">$501+</option>
+            </select>
+          </div>
+          <div class="col-md-3 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary me-2">
+              <i class="bx bx-filter-alt"></i> Apply Filters
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              onclick="resetFilters()"
+            >
+              <i class="bx bx-reset"></i> Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Transactions Table Card -->
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="card-title">Transaction List</h5>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              onclick="exportCSV()"
+            >
+              <i class="bx bx-download"></i> Export CSV
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              onclick="printTransactions()"
+            >
+              <i class="bx bx-printer"></i> Print
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Store</th>
+                <th>Transaction #</th>
+                <th>Till #</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsTable">
+              <!-- Transactions will be loaded here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-between align-items-center mt-4">
+          <div class="text-muted" id="pageInfo">
+            Showing <span id="startRecord">0</span> to
+            <span id="endRecord">0</span> of
+            <span id="totalRecords">0</span> entries
+          </div>
+          <nav aria-label="Page navigation">
+            <ul class="pagination mb-0" id="pagination">
+              <!-- Pagination will be generated here -->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Transaction Details Modal -->
+<div class="modal fade" id="transactionModal" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Transaction Details</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h6>Transaction Information</h6>
+            <table class="table table-sm">
+              <tr>
+                <th>Transaction #:</th>
+                <td id="modalTransNo"></td>
+              </tr>
+              <tr>
+                <th>Date & Time:</th>
+                <td id="modalDateTime"></td>
+              </tr>
+              <tr>
+                <th>Store:</th>
+                <td id="modalStore"></td>
+              </tr>
+              <tr>
+                <th>Till #:</th>
+                <td id="modalTill"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <h6>Financial Details</h6>
+            <table class="table table-sm">
+              <tr>
+                <th>Net Sales:</th>
+                <td id="modalNetSales"></td>
+              </tr>
+              <tr>
+                <th>Payment Method:</th>
+                <td id="modalTender"></td>
+              </tr>
+              <tr>
+                <th>Discount:</th>
+                <td id="modalDiscount"></td>
+              </tr>
+              <tr>
+                <th>Tax:</th>
+                <td id="modalTax"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  let currentPage = 1;
+  const perPage = 10;
+  let totalPages = 0;
+  let transactionModal;
+
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize modal
+    transactionModal = new bootstrap.Modal(
+      document.getElementById("transactionModal")
+    );
+
+    // Load initial data
+    loadTransactions();
+    loadFilters();
+
+    // Set up form submission
+    document
+      .getElementById("filterForm")
+      .addEventListener("submit", function (e) {
+        e.preventDefault();
+        currentPage = 1;
+        loadTransactions();
+      });
+  });
+
+  async function loadTransactions() {
+    try {
+      // Get filter values
+      const filters = {
+        start_date: document.getElementById("startDate").value,
+        end_date: document.getElementById("endDate").value,
+        store: document.getElementById("storeFilter").value,
+        tender: document.getElementById("tenderFilter").value,
+        amount_range: document.getElementById("amountFilter").value,
+      };
+
+      // Fetch data
+      const response = await fetch(
+        `/api/data?page=${currentPage}&per_page=${perPage}&${new URLSearchParams(
+          filters
+        )}`
+      );
+      const data = await response.json();
+
+      // Update table
+      updateTransactionsTable(data.data);
+
+      // Update pagination
+      updatePagination(data);
+
+      // Update page info
+      updatePageInfo(data);
+    } catch (error) {
+      console.error("Error loading transactions:", error);
+      showAlert("Error loading transactions", "danger");
+    }
+  }
+
+  function updateTransactionsTable(transactions) {
+    const tbody = document.getElementById("transactionsTable");
+    tbody.innerHTML = transactions
+      .map(
+        (t) => `
+        <tr>
+            <td>${formatDateTime(t.trans_date, t.trans_time)}</td>
+            <td>${t.store_display_name}</td>
+            <td>${t.trans_no}</td>
+            <td>${t.till_no}</td>
+            <td>$${t.net_sales_header_values.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}</td>
+            <td>${t.tender || "Unknown"}</td>
+            <td><span class="badge bg-success">Completed</span></td>
+            <td>
+                <button class="btn btn-sm btn-outline-primary" onclick="viewTransaction(${JSON.stringify(
+                  t
+                ).replace(/"/g, "&quot;")})">
+                    <i class="bx bx-show"></i>
+                </button>
+            </td>
+        </tr>
+    `
+      )
+      .join("");
+  }
+
+  function updatePagination(data) {
+    const pagination = document.getElementById("pagination");
+    totalPages = data.total_pages;
+
+    let html = `
+        <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+            <a class="page-link" href="#" onclick="changePage(${
+              currentPage - 1
+            })">Previous</a>
+        </li>
+    `;
+
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - 2 && i <= currentPage + 2)
+      ) {
+        html += `
+                <li class="page-item ${i === currentPage ? "active" : ""}">
+                    <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+                </li>
+            `;
+      } else if (i === currentPage - 3 || i === currentPage + 3) {
+        html +=
+          '<li class="page-item disabled"><span class="page-link">...</span></li>';
+      }
+    }
+
+    html += `
+        <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+            <a class="page-link" href="#" onclick="changePage(${
+              currentPage + 1
+            })">Next</a>
+        </li>
+    `;
+
+    pagination.innerHTML = html;
+  }
+
+  function updatePageInfo(data) {
+    const start = (currentPage - 1) * perPage + 1;
+    const end = Math.min(start + perPage - 1, data.total);
+
+    document.getElementById("startRecord").textContent = start;
+    document.getElementById("endRecord").textContent = end;
+    document.getElementById("totalRecords").textContent = data.total;
+  }
+
+  async function loadFilters() {
+    try {
+      const response = await fetch("/api/analytics");
+      const data = await response.json();
+
+      // Populate store filter
+      const storeFilter = document.getElementById("storeFilter");
+      const stores = [...new Set(data.sales_by_store.map((s) => s.store_name))];
+      storeFilter.innerHTML =
+        '<option value="">All Stores</option>' +
+        stores
+          .map((store) => `<option value="${store}">${store}</option>`)
+          .join("");
+
+      // Populate tender filter
+      const tenderFilter = document.getElementById("tenderFilter");
+      const tenders = [...new Set(data.sales_by_tender.map((t) => t.tender))];
+      tenderFilter.innerHTML =
+        '<option value="">All Methods</option>' +
+        tenders
+          .map((tender) => `<option value="${tender}">${tender}</option>`)
+          .join("");
+    } catch (error) {
+      console.error("Error loading filters:", error);
+    }
+  }
+
+  function changePage(page) {
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    loadTransactions();
+  }
+
+  function resetFilters() {
+    document.getElementById("filterForm").reset();
+    currentPage = 1;
+    loadTransactions();
+  }
+
+  function viewTransaction(transaction) {
+    // Populate modal with transaction details
+    document.getElementById("modalTransNo").textContent = transaction.trans_no;
+    document.getElementById("modalDateTime").textContent = formatDateTime(
+      transaction.trans_date,
+      transaction.trans_time
+    );
+    document.getElementById("modalStore").textContent =
+      transaction.store_display_name;
+    document.getElementById("modalTill").textContent = transaction.till_no;
+    document.getElementById("modalNetSales").textContent = formatCurrency(
+      transaction.net_sales_header_values
+    );
+    document.getElementById("modalTender").textContent =
+      transaction.tender || "Unknown";
+    document.getElementById("modalDiscount").textContent = formatCurrency(
+      transaction.discount_header || 0
+    );
+    document.getElementById("modalTax").textContent = formatCurrency(
+      transaction.tax_header || 0
+    );
+
+    // Show modal
+    transactionModal.show();
+  }
+
+  async function exportCSV() {
+    try {
+      const response = await fetch("/api/export");
+      const data = await response.json();
+
+      // Convert data to CSV
+      const csv = convertToCSV(data);
+
+      // Create download link
+      const blob = new Blob([csv], { type: "text/csv" });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.setAttribute("hidden", "");
+      a.setAttribute("href", url);
+      a.setAttribute("download", `transactions_${formatDate(new Date())}.csv`);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Error exporting data:", error);
+      showAlert("Error exporting data", "danger");
+    }
+  }
+
+  function printTransactions() {
+    window.print();
+  }
+
+  // Utility functions
+  function formatDateTime(date, time) {
+    return `${new Date(date).toLocaleDateString()} ${time}`;
+  }
+
+  function formatDate(date) {
+    return date.toISOString().split("T")[0];
+  }
+
+  function formatCurrency(amount) {
+    return `$${Number(amount).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
+  }
+
+  function convertToCSV(data) {
+    const headers = Object.keys(data[0]);
+    const rows = data.map((obj) =>
+      headers.map((header) => JSON.stringify(obj[header])).join(",")
+    );
+    return [headers.join(","), ...rows].join("\n");
+  }
+
+  function showAlert(message, type) {
+    // Implementation of alert display
+    console.log(`${type}: ${message}`);
+  }
+</script>
+{% endblock %}

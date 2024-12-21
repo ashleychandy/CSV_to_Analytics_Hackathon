@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS ETL Dashboard - {% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>POS ETL</h3>
+                <p class="text-light mb-0">Data Management</p>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li {% if active_page == 'dashboard' %}class="active"{% endif %}>
+                    <a href="/" title="Dashboard">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li {% if active_page == 'upload' %}class="active"{% endif %}>
+                    <a href="/upload" title="Upload Data">
+                        <i class='bx bx-upload'></i>
+                        <span>Upload Data</span>
+                    </a>
+                </li>
+                <li {% if active_page == 'transactions' %}class="active"{% endif %}>
+                    <a href="/transactions" title="Transactions">
+                        <i class='bx bx-list-ul'></i>
+                        <span>Transactions</span>
+                    </a>
+                </li>
+                <li {% if active_page == 'analytics' %}class="active"{% endif %}>
+                    <a href="/analytics" title="Analytics">
+                        <i class='bx bx-line-chart'></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li {% if active_page == 'settings' %}class="active"{% endif %}>
+                    <a href="/settings" title="Settings">
+                        <i class='bx bx-cog'></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="version">v1.0.0</div>
+            </div>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center">
+                        <button type="button" id="sidebarCollapse" class="btn btn-primary me-3" title="Toggle Sidebar">
+                            <i class='bx bx-menu'></i>
+                        </button>
+
+                        <!-- Search Bar -->
+                        <div class="search-bar">
+                            <div class="input-group">
+                                <span class="input-group-text bg-transparent border-end-0">
+                                    <i class='bx bx-search'></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" placeholder="Search...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <!-- Status Indicator -->
+                        <div class="status-indicator me-3">
+                            <span class="status-dot {% if status == 'Running' %}bg-success{% else %}bg-warning{% endif %}"></span>
+                            <span class="status-text">{{ status }}</span>
+                        </div>
+
+                        <!-- Notifications -->
+                        <div class="dropdown me-3">
+                            <button class="btn btn-link position-relative" type="button" id="notificationsDropdown" 
+                                    data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
+                                <i class='bx bx-bell'></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    3
+                                </span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                                <li><h6 class="dropdown-header">Notifications</h6></li>
+                                <li><a class="dropdown-item" href="#">New data uploaded</a></li>
+                                <li><a class="dropdown-item" href="#">Processing complete</a></li>
+                                <li><a class="dropdown-item" href="#">System update available</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-primary" href="#">View all notifications</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- User Menu -->
+                        <div class="dropdown">
+                            <button class="btn btn-link dropdown-toggle d-flex align-items-center" type="button" 
+                                    id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class='bx bx-user-circle fs-5 me-2'></i>
+                                <span class="d-none d-md-inline">Admin</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li><a class="dropdown-item" href="/profile"><i class='bx bx-user me-2'></i>Profile</a></li>
+                                <li><a class="dropdown-item" href="/settings"><i class='bx bx-cog me-2'></i>Settings</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-danger" href="/logout"><i class='bx bx-log-out me-2'></i>Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content -->
+            <div class="container-fluid">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        {% block breadcrumb %}{% endblock %}
+                    </ol>
+                </nav>
+
+                <!-- Page Content -->
+                <div class="content-wrapper">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', path='/js/dashboard.js') }}"></script>
+    {% block scripts %}{% endblock %}
+
+    <script>
+        // Toggle sidebar
+        document.getElementById('sidebarCollapse').addEventListener('click', function() {
+            document.getElementById('sidebar').classList.toggle('active');
+            document.getElementById('content').classList.toggle('active');
+        });
+
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    </script>
+</body>
+</html> 
