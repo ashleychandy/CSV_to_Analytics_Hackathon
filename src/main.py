@@ -365,7 +365,7 @@ async def get_analytics(request: Request, db: Session = Depends(get_db)):
                 func.count().label("transaction_count")
             )
             .group_by(POSTransaction.trans_date)
-            .order_by(POSTransaction.trans_date.desc())
+            .order_by(POSTransaction.trans_date.asc())
             .limit(30)  # Last 30 days
             .all()
         )

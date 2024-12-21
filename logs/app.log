@@ -12,3 +12,25 @@ Traceback (most recent call last):
     version = _bcrypt.__about__.__version__
 AttributeError: module 'bcrypt' has no attribute '__about__'
 2024-12-21 15:33:41,490 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:38:41,491 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:43:41,480 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:44:04,917 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:44:04,928 - src.main - INFO - Application startup completed
+2024-12-21 15:44:04,929 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:44:20,236 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 15:44:44,549 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:44:44,561 - src.main - INFO - Application startup completed
+2024-12-21 15:44:44,561 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:45:57,085 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 15:49:44,570 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:54:44,578 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:56:05,245 - src.main - ERROR - Error processing upload: 'utf-8' codec can't decode byte 0xa4 in position 14: invalid start byte
+2024-12-21 15:59:44,580 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}

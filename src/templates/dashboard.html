@@ -179,11 +179,16 @@ breadcrumb %}
       dailySalesChart = new Chart(ctx, {
         type: "line",
         data: {
-          labels: data.map((d) => new Date(d.date).toLocaleDateString()),
+          labels: data.map((d) =>
+            new Date(d.date).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })
+          ),
           datasets: [
             {
               label: "Daily Sales",
-              data: data.map((d) => d.total),
+              data: data.map((d) => d.total).reverse(),
               borderColor: "#0d6efd",
               backgroundColor: "rgba(13, 110, 253, 0.05)",
               fill: true,
@@ -209,9 +214,24 @@ breadcrumb %}
               bodyColor: "#000",
               borderColor: "#e9ecef",
               borderWidth: 1,
-              padding: 10,
               callbacks: {
-                label: (context) => formatCurrency(context.raw),
+                title: (context) => {
+                  return new Date(
+                    data[context[0].dataIndex].date
+                  ).toLocaleDateString("en-US", {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  });
+                },
+                label: (context) => {
+                  const value = new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  }).format(context.raw);
+                  return `Sales: ${value}`;
+                },
               },
             },
           },
@@ -221,25 +241,23 @@ breadcrumb %}
                 display: false,
               },
               ticks: {
-                maxRotation: 0,
-                maxTicksLimit: 7,
+                maxRotation: 45,
+                minRotation: 45,
               },
             },
             y: {
               beginAtZero: true,
-              grid: {
-                borderDash: [5, 5],
-              },
               ticks: {
-                callback: (value) => formatCurrency(value),
-                maxTicksLimit: 5,
+                callback: (value) => {
+                  return new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                  }).format(value);
+                },
               },
             },
-          },
-          interaction: {
-            mode: "nearest",
-            axis: "x",
-            intersect: false,
           },
         },
       });
