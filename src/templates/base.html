@@ -7,6 +7,323 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #f8f9fa;
+            --sidebar-width: 250px;
+            --sidebar-collapsed-width: 70px;
+            --header-height: 60px;
+            --content-padding: 1.5rem;
+        }
+
+        /* Layout */
+        .wrapper {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--secondary-color);
+        }
+
+        /* Sidebar */
+        #sidebar {
+            width: var(--sidebar-width);
+            background: #343a40;
+            color: #fff;
+            transition: all 0.3s;
+            z-index: 1000;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar.active {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        #sidebar .sidebar-header {
+            padding: 1.25rem 1rem;
+            background: #2c3136;
+            text-align: center;
+        }
+
+        #sidebar .sidebar-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        #sidebar ul.components {
+            padding: 1rem 0;
+            flex-grow: 1;
+        }
+
+        #sidebar ul li {
+            padding: 0.25rem 1rem;
+        }
+
+        #sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        #sidebar ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #sidebar ul li.active a {
+            background: var(--primary-color);
+            font-weight: 500;
+        }
+
+        #sidebar ul li a i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+            width: 1.5rem;
+            text-align: center;
+        }
+
+        #sidebar.active ul li a span {
+            display: none;
+        }
+
+        #sidebar .sidebar-footer {
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Content */
+        #content {
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+            transition: all 0.3s;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #content.active {
+            width: calc(100% - var(--sidebar-collapsed-width));
+            margin-left: var(--sidebar-collapsed-width);
+        }
+
+        /* Navbar */
+        .navbar {
+            padding: 0.75rem var(--content-padding);
+            background: #fff !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            height: var(--header-height);
+        }
+
+        .navbar .container-fluid {
+            padding: 0;
+        }
+
+        .search-bar {
+            width: 300px;
+            margin-right: 1rem;
+        }
+
+        .search-bar .input-group {
+            background: var(--secondary-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .search-bar .input-group-text,
+        .search-bar .form-control {
+            border: none;
+            background: transparent;
+        }
+
+        .search-bar .form-control:focus {
+            box-shadow: none;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--secondary-color);
+            border-radius: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex-grow: 1;
+            padding: var(--content-padding);
+        }
+
+        /* Content Wrapper */
+        .content-wrapper {
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            padding: var(--content-padding);
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-bottom: var(--content-padding);
+            background: transparent;
+        }
+
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #6c757d;
+        }
+
+        /* User Menu */
+        .user-menu .dropdown-toggle {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: var(--secondary-color);
+            text-decoration: none;
+            color: #212529;
+        }
+
+        .user-menu .dropdown-toggle:after {
+            display: none;
+        }
+
+        .user-menu .dropdown-menu {
+            margin-top: 0.5rem;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+        }
+
+        .user-menu .dropdown-item {
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-menu .dropdown-item i {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+            width: 1.5rem;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            :root {
+                --content-padding: 1rem;
+            }
+
+            #sidebar {
+                width: var(--sidebar-collapsed-width);
+            }
+
+            #content {
+                width: calc(100% - var(--sidebar-collapsed-width));
+                margin-left: var(--sidebar-collapsed-width);
+            }
+
+            #sidebar ul li a span {
+                display: none;
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .navbar .container-fluid {
+                padding: 0 0.5rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+        }
+
+        /* Search Bar */
+        .search-bar {
+            width: 300px;
+            margin-right: 1rem;
+        }
+
+        .search-bar .input-group {
+            background: var(--secondary-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .search-bar .input-group-text,
+        .search-bar .form-control {
+            border: none;
+            background: transparent;
+        }
+
+        .search-bar .form-control:focus {
+            box-shadow: none;
+        }
+
+        /* Upload Button */
+        .btn-primary {
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+        }
+
+        .btn-primary i {
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 768px) {
+            .btn-primary i {
+                margin-right: 0 !important;
+            }
+        }
+
+        /* Status Indicator */
+    </style>
+    {% block styles %}{% endblock %}
 </head>
 <body>
     <div class="wrapper">
@@ -24,36 +341,30 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                {% if user.role in ['admin', 'manager'] %}
                 <li {% if active_page == 'upload' %}class="active"{% endif %}>
                     <a href="/upload" title="Upload Data">
                         <i class='bx bx-upload'></i>
                         <span>Upload Data</span>
                     </a>
                 </li>
-                {% endif %}
                 <li {% if active_page == 'transactions' %}class="active"{% endif %}>
                     <a href="/transactions" title="Transactions">
                         <i class='bx bx-list-ul'></i>
                         <span>Transactions</span>
                     </a>
                 </li>
-                {% if user.role in ['admin', 'manager'] %}
                 <li {% if active_page == 'analytics' %}class="active"{% endif %}>
                     <a href="/analytics" title="Analytics">
                         <i class='bx bx-line-chart'></i>
                         <span>Analytics</span>
                     </a>
                 </li>
-                {% endif %}
-                {% if user.role == 'admin' %}
                 <li {% if active_page == 'settings' %}class="active"{% endif %}>
                     <a href="/settings" title="Settings">
                         <i class='bx bx-cog'></i>
                         <span>Settings</span>
                     </a>
                 </li>
-                {% endif %}
             </ul>
 
             <div class="sidebar-footer">
@@ -64,7 +375,7 @@
         <!-- Page Content -->
         <div id="content">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container-fluid">
                     <div class="d-flex align-items-center">
                         <button type="button" id="sidebarCollapse" class="btn btn-primary me-3" title="Toggle Sidebar">
@@ -80,49 +391,37 @@
                                 <input type="text" class="form-control border-start-0" placeholder="Search...">
                             </div>
                         </div>
+
+                        {% if user.role in ['admin', 'manager'] %}
+                        <!-- Upload Button -->
+                        <a href="/upload" class="btn btn-primary d-flex align-items-center">
+                            <i class='bx bx-upload me-2'></i>
+                            <span class="d-none d-md-inline">Upload Data</span>
+                        </a>
+                        {% endif %}
                     </div>
 
                     <div class="d-flex align-items-center">
                         <!-- Status Indicator -->
-                        <div class="status-indicator me-3">
+                        <div class="status-indicator">
                             <span class="status-dot {% if status == 'Running' %}bg-success{% else %}bg-warning{% endif %}"></span>
-                            <span class="status-text">{{ status }}</span>
-                        </div>
-
-                        <!-- Notifications -->
-                        <div class="dropdown me-3">
-                            <button class="btn btn-link position-relative" type="button" id="notificationsDropdown" 
-                                    data-bs-toggle="dropdown" aria-expanded="false" title="Notifications">
-                                <i class='bx bx-bell'></i>
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    3
-                                </span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                                <li><h6 class="dropdown-header">Notifications</h6></li>
-                                <li><a class="dropdown-item" href="#">New data uploaded</a></li>
-                                <li><a class="dropdown-item" href="#">Processing complete</a></li>
-                                <li><a class="dropdown-item" href="#">System update available</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-primary" href="#">View all notifications</a></li>
-                            </ul>
+                            <span class="status-text">{{ status|default('Idle') }}</span>
                         </div>
 
                         <!-- User Menu -->
-                        <div class="dropdown">
-                            <button class="btn btn-link dropdown-toggle d-flex align-items-center" type="button" 
+                        <div class="dropdown user-menu">
+                            <button class="btn dropdown-toggle d-flex align-items-center" type="button" 
                                     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class='bx bx-user-circle fs-5 me-2'></i>
                                 <span class="d-none d-md-inline">{{ user.username }}</span>
                                 <span class="badge bg-primary ms-2 text-uppercase">{{ user.role }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                <li><a class="dropdown-item" href="/profile"><i class='bx bx-user me-2'></i>Profile</a></li>
                                 {% if user.role == 'admin' %}
-                                <li><a class="dropdown-item" href="/settings"><i class='bx bx-cog me-2'></i>Settings</a></li>
-                                {% endif %}
+                                <li><a class="dropdown-item" href="/settings"><i class='bx bx-cog'></i>Settings</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item text-danger" href="/logout"><i class='bx bx-log-out me-2'></i>Logout</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item text-danger" href="/logout"><i class='bx bx-log-out'></i>Logout</a></li>
                             </ul>
                         </div>
                     </div>
@@ -130,9 +429,9 @@
             </nav>
 
             <!-- Main Content -->
-            <div class="container-fluid">
+            <div class="main-content">
                 <!-- Breadcrumb -->
-                <nav aria-label="breadcrumb" class="mb-4">
+                <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         {% block breadcrumb %}{% endblock %}
@@ -149,7 +448,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ url_for('static', path='/js/dashboard.js') }}"></script>
     {% block scripts %}{% endblock %}
 
     <script>

@@ -1,92 +1,130 @@
 {% extends "base.html" %} {% block title %}Dashboard{% endblock %} {% block
-content %}
-<div class="row mb-4">
+breadcrumb %}
+<li class="breadcrumb-item active">Dashboard</li>
+{% endblock %} {% block content %}
+<div class="row g-4">
   <!-- Summary Cards -->
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Total Transactions</h5>
-        <h2 class="card-text" id="totalTransactions">0</h2>
-        <p class="card-text text-muted">All time</p>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="card-subtitle text-muted">Total Transactions</h6>
+          <i class="bx bx-shopping-bag fs-4 text-primary"></i>
+        </div>
+        <h2 class="card-title mb-0" id="totalTransactions">0</h2>
+        <small class="text-muted">All time</small>
       </div>
     </div>
   </div>
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Total Sales</h5>
-        <h2 class="card-text" id="totalSales">$0</h2>
-        <p class="card-text text-muted">All time</p>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="card-subtitle text-muted">Total Sales</h6>
+          <i class="bx bx-dollar-circle fs-4 text-success"></i>
+        </div>
+        <h2 class="card-title mb-0" id="totalSales">$0</h2>
+        <small class="text-muted">All time</small>
       </div>
     </div>
   </div>
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Average Transaction</h5>
-        <h2 class="card-text" id="avgTransaction">$0</h2>
-        <p class="card-text text-muted">Per transaction</p>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="card-subtitle text-muted">Average Transaction</h6>
+          <i class="bx bx-line-chart fs-4 text-info"></i>
+        </div>
+        <h2 class="card-title mb-0" id="avgTransaction">$0</h2>
+        <small class="text-muted">Per transaction</small>
       </div>
     </div>
   </div>
   <div class="col-md-3">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Processing Status</h5>
-        <h2 class="card-text" id="processingStatus">Idle</h2>
-        <p class="card-text text-muted" id="lastUpdate">Last update: Never</p>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <h6 class="card-subtitle text-muted">Items per Transaction</h6>
+          <i class="bx bx-package fs-4 text-warning"></i>
+        </div>
+        <h2 class="card-title mb-0" id="itemsPerTransaction">0</h2>
+        <small class="text-muted">Average</small>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row mb-4">
   <!-- Charts -->
-  <div class="col-md-6">
-    <div class="card">
+  <div class="col-md-8">
+    <div class="card h-100">
       <div class="card-body">
-        <h5 class="card-title">Sales by Store</h5>
-        <canvas id="salesByStoreChart"></canvas>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="card-title mb-0">Daily Sales Trend</h5>
+          <div class="btn-group btn-group-sm">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-range="7"
+            >
+              7D
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary active"
+              data-range="30"
+            >
+              30D
+            </button>
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-range="90"
+            >
+              90D
+            </button>
+          </div>
+        </div>
+        <div style="height: 300px">
+          <canvas id="dailySalesChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Sales by Payment Method</h5>
-        <canvas id="salesByTenderChart"></canvas>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div class="row">
-  <!-- Recent Transactions -->
+  <div class="col-md-4">
+    <div class="card h-100">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="card-title mb-0">Payment Methods</h5>
+          <div class="text-muted small">Total Sales</div>
+        </div>
+        <div style="height: 300px; position: relative">
+          <canvas id="paymentMethodsChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Store Performance -->
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Recent Transactions</h5>
+        <h5 class="card-title mb-4">Store Performance</h5>
         <div class="table-responsive">
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Date</th>
                 <th>Store</th>
-                <th>Transaction #</th>
-                <th>Amount</th>
-                <th>Payment Method</th>
-                <th>Status</th>
+                <th>Total Sales</th>
+                <th>Transactions</th>
+                <th>Avg Transaction</th>
+                <th>Items Sold</th>
+                <th>Items/Transaction</th>
               </tr>
             </thead>
-            <tbody id="recentTransactions">
-              <!-- Transactions will be loaded here -->
+            <tbody id="storePerformance">
+              <!-- Store data will be loaded here -->
             </tbody>
           </table>
-        </div>
-        <div class="text-center mt-3">
-          <a href="/transactions" class="btn btn-primary"
-            >View All Transactions</a
-          >
         </div>
       </div>
     </div>
@@ -95,146 +133,226 @@ content %}
 {% endblock %} {% block scripts %}
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Function to update dashboard data
+    let dailySalesChart = null;
+    let paymentMethodsChart = null;
+
     async function updateDashboard() {
       try {
-        // Get analytics data
-        const analyticsResponse = await fetch("/api/analytics");
-        const analytics = await analyticsResponse.json();
+        const response = await fetch("/api/analytics");
+        const data = await response.json();
 
         // Update summary cards
         document.getElementById("totalTransactions").textContent =
-          analytics.total_transactions.toLocaleString();
-        document.getElementById(
-          "totalSales"
-        ).textContent = `$${analytics.total_sales.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`;
-        document.getElementById(
-          "avgTransaction"
-        ).textContent = `$${analytics.average_transaction_value.toLocaleString(
-          undefined,
-          { minimumFractionDigits: 2, maximumFractionDigits: 2 }
-        )}`;
+          data.summary.total_transactions.toLocaleString();
+        document.getElementById("totalSales").textContent = formatCurrency(
+          data.summary.total_sales
+        );
+        document.getElementById("avgTransaction").textContent = formatCurrency(
+          data.summary.avg_transaction_value
+        );
+        document.getElementById("itemsPerTransaction").textContent =
+          data.summary.items_per_transaction.toFixed(1);
 
         // Update charts
-        updateSalesByStoreChart(analytics.sales_by_store);
-        updateSalesByTenderChart(analytics.sales_by_tender);
-
-        // Get recent transactions
-        const transactionsResponse = await fetch("/api/data?page=1&per_page=5");
-        const transactions = await transactionsResponse.json();
-        updateRecentTransactions(transactions.data);
-
-        // Get processing status
-        const statusResponse = await fetch("/api/status");
-        const status = await statusResponse.json();
-        document.getElementById("processingStatus").textContent = status.status;
-        document.getElementById(
-          "lastUpdate"
-        ).textContent = `Last update: ${new Date(
-          status.last_update
-        ).toLocaleString()}`;
+        updateDailySalesChart(data.daily_sales);
+        updatePaymentMethodsChart(data.sales_by_tender);
+        updateStorePerformance(data.sales_by_store);
       } catch (error) {
         console.error("Error updating dashboard:", error);
       }
     }
 
-    // Function to update sales by store chart
-    function updateSalesByStoreChart(data) {
-      const ctx = document.getElementById("salesByStoreChart").getContext("2d");
-      new Chart(ctx, {
-        type: "bar",
+    function formatCurrency(value) {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(value);
+    }
+
+    function updateDailySalesChart(data) {
+      const ctx = document.getElementById("dailySalesChart").getContext("2d");
+
+      if (dailySalesChart) {
+        dailySalesChart.destroy();
+      }
+
+      dailySalesChart = new Chart(ctx, {
+        type: "line",
         data: {
-          labels: data.map((item) => item.store_name),
+          labels: data.map((d) => new Date(d.date).toLocaleDateString()),
           datasets: [
             {
-              label: "Sales",
-              data: data.map((item) => item.total),
-              backgroundColor: "rgba(54, 162, 235, 0.5)",
-              borderColor: "rgba(54, 162, 235, 1)",
-              borderWidth: 1,
+              label: "Daily Sales",
+              data: data.map((d) => d.total),
+              borderColor: "#0d6efd",
+              backgroundColor: "rgba(13, 110, 253, 0.05)",
+              fill: true,
+              tension: 0.3,
+              pointRadius: 3,
+              pointHoverRadius: 5,
+              borderWidth: 2,
             },
           ],
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              mode: "index",
+              intersect: false,
+              backgroundColor: "rgba(255, 255, 255, 0.9)",
+              titleColor: "#000",
+              bodyColor: "#000",
+              borderColor: "#e9ecef",
+              borderWidth: 1,
+              padding: 10,
+              callbacks: {
+                label: (context) => formatCurrency(context.raw),
+              },
+            },
+          },
           scales: {
+            x: {
+              grid: {
+                display: false,
+              },
+              ticks: {
+                maxRotation: 0,
+                maxTicksLimit: 7,
+              },
+            },
             y: {
               beginAtZero: true,
+              grid: {
+                borderDash: [5, 5],
+              },
               ticks: {
-                callback: (value) => `$${value.toLocaleString()}`,
+                callback: (value) => formatCurrency(value),
+                maxTicksLimit: 5,
               },
             },
+          },
+          interaction: {
+            mode: "nearest",
+            axis: "x",
+            intersect: false,
           },
         },
       });
     }
 
-    // Function to update sales by tender chart
-    function updateSalesByTenderChart(data) {
+    function updatePaymentMethodsChart(data) {
       const ctx = document
-        .getElementById("salesByTenderChart")
+        .getElementById("paymentMethodsChart")
         .getContext("2d");
-      new Chart(ctx, {
-        type: "pie",
+
+      if (paymentMethodsChart) {
+        paymentMethodsChart.destroy();
+      }
+
+      const colors = [
+        "rgba(13, 110, 253, 0.85)", // Primary blue
+        "rgba(25, 135, 84, 0.85)", // Success green
+        "rgba(255, 193, 7, 0.85)", // Warning yellow
+        "rgba(220, 53, 69, 0.85)", // Danger red
+        "rgba(13, 202, 240, 0.85)", // Info cyan
+        "rgba(108, 117, 125, 0.85)", // Secondary gray
+      ];
+
+      paymentMethodsChart = new Chart(ctx, {
+        type: "doughnut",
         data: {
-          labels: data.map((item) => item.tender),
+          labels: data.map((d) => d.tender),
           datasets: [
             {
-              data: data.map((item) => item.total),
-              backgroundColor: [
-                "rgba(255, 99, 132, 0.5)",
-                "rgba(54, 162, 235, 0.5)",
-                "rgba(255, 206, 86, 0.5)",
-                "rgba(75, 192, 192, 0.5)",
-              ],
-              borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-              ],
-              borderWidth: 1,
+              data: data.map((d) => d.total),
+              backgroundColor: colors,
+              borderColor: "white",
+              borderWidth: 2,
+              hoverBorderColor: "white",
+              hoverBorderWidth: 3,
+              hoverOffset: 5,
             },
           ],
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
+          cutout: "65%",
           plugins: {
-            tooltip: {
-              callbacks: {
-                label: (context) =>
-                  `${context.label}: $${context.raw.toLocaleString()}`,
+            legend: {
+              position: "bottom",
+              labels: {
+                padding: 15,
+                usePointStyle: true,
+                pointStyle: "circle",
+                font: {
+                  size: 11,
+                },
               },
             },
+            tooltip: {
+              backgroundColor: "rgba(255, 255, 255, 0.9)",
+              titleColor: "#000",
+              bodyColor: "#000",
+              bodyFont: {
+                size: 12,
+              },
+              borderColor: "#e9ecef",
+              borderWidth: 1,
+              padding: 10,
+              boxPadding: 5,
+              callbacks: {
+                label: (context) => {
+                  const value = formatCurrency(context.raw);
+                  const percentage = (
+                    (context.raw / data.reduce((a, b) => a + b.total, 0)) *
+                    100
+                  ).toFixed(1);
+                  return ` ${context.label}: ${value} (${percentage}%)`;
+                },
+              },
+            },
+          },
+          layout: {
+            padding: 20,
           },
         },
       });
     }
 
-    // Function to update recent transactions table
-    function updateRecentTransactions(transactions) {
-      const tbody = document.getElementById("recentTransactions");
-      tbody.innerHTML = transactions
+    function updateStorePerformance(data) {
+      const tbody = document.getElementById("storePerformance");
+      tbody.innerHTML = data
         .map(
-          (t) => `
+          (store) => `
             <tr>
-                <td>${new Date(t.trans_date).toLocaleDateString()}</td>
-                <td>${t.store_display_name}</td>
-                <td>${t.trans_no}</td>
-                <td>$${t.net_sales_header_values.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })}</td>
-                <td>${t.tender || "Unknown"}</td>
-                <td><span class="badge bg-success">Completed</span></td>
+                <td>${store.store}</td>
+                <td>${formatCurrency(store.total_sales)}</td>
+                <td>${store.transaction_count.toLocaleString()}</td>
+                <td>${formatCurrency(store.avg_transaction)}</td>
+                <td>${store.item_count.toLocaleString()}</td>
+                <td>${store.items_per_transaction.toFixed(1)}</td>
             </tr>
         `
         )
         .join("");
     }
+
+    // Date range buttons
+    document.querySelectorAll("[data-range]").forEach((button) => {
+      button.addEventListener("click", function () {
+        document
+          .querySelectorAll("[data-range]")
+          .forEach((btn) => btn.classList.remove("active"));
+        this.classList.add("active");
+        updateDashboard(); // You might want to add a date range parameter here
+      });
+    });
 
     // Initial update
     updateDashboard();

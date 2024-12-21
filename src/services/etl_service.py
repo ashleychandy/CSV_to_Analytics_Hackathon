@@ -58,7 +58,7 @@ class ETLService:
                     df['user_id'] = user_id
 
                 # Convert date and time fields
-                df['trans_date'] = pd.to_datetime(df['trans_date'])
+                df['trans_date'] = pd.to_datetime(df['trans_date'], format='%m/%d/%y')
                 df['dm_load_date'] = datetime.now()
                 df['dm_load_delta_id'] = str(uuid.uuid4())
 
@@ -111,7 +111,7 @@ class ETLService:
             for _, row in df.iterrows():
                 try:
                     # Convert date string to datetime
-                    trans_date = pd.to_datetime(row.get('trans_date')).date() if pd.notna(row.get('trans_date')) else None
+                    trans_date = pd.to_datetime(row.get('trans_date'), format='%m/%d/%y').date() if pd.notna(row.get('trans_date')) else None
                     if not trans_date:
                         logger.warning(f"Skipping record with invalid date: {row.get('trans_date')}")
                         continue
@@ -185,7 +185,7 @@ class ETLService:
         """Transform the data into the required format"""
         try:
             # Convert date and time
-            df['trans_date'] = pd.to_datetime(df['TRANS_DATE'])
+            df['trans_date'] = pd.to_datetime(df['TRANS_DATE'], format='%m/%d/%y')
             
             # Convert numeric columns
             numeric_columns = ['DISCOUNT_HEADER', 'TAX_HEADER', 'NET_SALES_HEADER_VALUES', 

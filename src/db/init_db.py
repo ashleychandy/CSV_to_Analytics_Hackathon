@@ -20,17 +20,17 @@ def init_test_users(db):
                 User(
                     username="user1",
                     password_hash=get_password_hash("pass1"),
-                    role="user"
+                    role="admin"
                 ),
                 User(
                     username="user2",
                     password_hash=get_password_hash("pass2"),
-                    role="user"
+                    role="manager"
                 ),
                 User(
                     username="user3",
                     password_hash=get_password_hash("pass3"),
-                    role="admin"
+                    role="user"
                 )
             ]
             
@@ -58,10 +58,7 @@ def init_database():
             connect_args={"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
         )
         
-        # Drop all tables
-        Base.metadata.drop_all(bind=engine)
-        
-        # Create tables
+        # Create tables if they don't exist
         Base.metadata.create_all(bind=engine)
         
         # Create session factory

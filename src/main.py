@@ -235,18 +235,8 @@ async def upload_file(
 
 def get_user_data_filter(user: dict, query, db: Session):
     """Apply user-specific data filter to query."""
-    if user["role"] == "admin":
-        return query  # Admin can see all data
-    elif user["role"] == "manager":
-        # Managers can see their own data and data from regular users
-        regular_user_ids = db.query(User.id).filter(User.role == "user").subquery()
-        return query.filter(
-            (POSTransaction.user_id == user["id"]) | 
-            (POSTransaction.user_id.in_(regular_user_ids))
-        )
-    else:
-        # Regular users can only see their own data
-        return query.filter(POSTransaction.user_id == user["id"])
+    # All users can see all data
+    return query
 
 @app.get("/api/data")
 async def get_data(
@@ -486,9 +476,6 @@ async def clear_data(request: Request, db: Session = Depends(get_db)):
     
     try:
         query = db.query(POSTransaction)
-        if request.session["user"]["role"] != "admin":
-            query = query.filter(POSTransaction.user_id == request.session["user"]["id"])
-        
         deleted_count = query.delete(synchronize_session=False)
         db.commit()
         
@@ -515,9 +502,6 @@ async def get_upload_history(request: Request, db: Session = Depends(get_db)):
             func.count().label('record_count'),
             func.sum(POSTransaction.net_sales_header_values).label('total_sales')
         )
-        
-        if request.session["user"]["role"] != "admin":
-            query = query.filter(POSTransaction.user_id == request.session["user"]["id"])
         
         history = query.group_by(POSTransaction.dm_load_date)\
                       .order_by(POSTransaction.dm_load_date.desc())\
