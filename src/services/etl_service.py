@@ -57,8 +57,18 @@ class ETLService:
                 if user_id:
                     df['user_id'] = user_id
 
-                # Convert date and time fields
-                df['trans_date'] = pd.to_datetime(df['trans_date'], format='%m/%d/%y')
+                # Convert date and time fields - try multiple formats
+                try:
+                    # First try %m/%d/%y format
+                    df['trans_date'] = pd.to_datetime(df['trans_date'], format='%m/%d/%y')
+                except ValueError:
+                    try:
+                        # Then try %Y-%m-%d format
+                        df['trans_date'] = pd.to_datetime(df['trans_date'], format='%Y-%m-%d')
+                    except ValueError:
+                        # If both fail, let pandas infer the format
+                        df['trans_date'] = pd.to_datetime(df['trans_date'])
+
                 df['dm_load_date'] = datetime.now()
                 df['dm_load_delta_id'] = str(uuid.uuid4())
 
@@ -116,8 +126,13 @@ class ETLService:
                         logger.warning(f"Skipping record with invalid date: {row.get('trans_date')}")
                         continue
 
+                    # Ensure user_id is set for each record
+                    if not user_id:
+                        logger.warning("No user_id provided for record")
+                        continue
+
                     transaction = POSTransaction(
-                        user_id=user_id,
+                        user_id=user_id,  # Explicitly set user_id for each record
                         store_code=str(row.get('store_code', '')),
                         store_display_name=str(row.get('store_display_name', '')),
                         trans_date=trans_date,
@@ -181,7 +196,7 @@ class ETLService:
             logger.error(f"Error extracting data from {file_path}: {str(e)}")
             raise
 
-    def transform_data(self, df: pd.DataFrame) -> List[Dict[str, Any]]:
+    def transform_data(self, df: pd.DataFrame, user_id: int = None) -> List[Dict[str, Any]]:
         """Transform the data into the required format"""
         try:
             # Convert date and time
@@ -199,12 +214,14 @@ class ETLService:
             # Convert to list of dictionaries with lowercase keys
             records = df.rename(columns=lambda x: x.lower()).to_dict('records')
             
-            # Add processed flag for MongoDB tracking
+            # Add processed flag and user_id for tracking
             for record in records:
                 record['processed'] = False
                 record['trans_date'] = record['trans_date'].isoformat()
+                if user_id:
+                    record['user_id'] = user_id
             
-            logger.info(f"Successfully transformed {len(records)} records")
+            logger.info(f"Successfully transformed {len(records)} records for user {user_id}")
             return records
         except Exception as e:
             logger.error(f"Error transforming data: {str(e)}")

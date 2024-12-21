@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends, 
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from starlette.middleware.sessions import SessionMiddleware
@@ -235,8 +235,22 @@ async def upload_file(
 
 def get_user_data_filter(user: dict, query, db: Session):
     """Apply user-specific data filter to query."""
-    # All users can see all data
-    return query
+    if user["role"] == "admin":
+        # Admin can see all data
+        return query
+    elif user["role"] == "manager":
+        # Manager can see their own data and data from regular users
+        return query.filter(
+            or_(
+                POSTransaction.user_id == user["id"],
+                POSTransaction.user_id.in_(
+                    db.query(User.id).filter(User.role == "user")
+                )
+            )
+        )
+    else:
+        # Regular users can only see their own data
+        return query.filter(POSTransaction.user_id == user["id"])
 
 @app.get("/api/data")
 async def get_data(
@@ -475,7 +489,11 @@ async def clear_data(request: Request, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Not authenticated")
     
     try:
+        # Get query with user filter
         query = db.query(POSTransaction)
+        query = get_user_data_filter(request.session["user"], query, db)
+        
+        # Delete filtered records
         deleted_count = query.delete(synchronize_session=False)
         db.commit()
         
@@ -503,6 +521,9 @@ async def get_upload_history(request: Request, db: Session = Depends(get_db)):
             func.sum(POSTransaction.net_sales_header_values).label('total_sales')
         )
         
+        # Filter by user_id
+        query = get_user_data_filter(request.session["user"], query, db)
+        
         history = query.group_by(POSTransaction.dm_load_date)\
                       .order_by(POSTransaction.dm_load_date.desc())\
                       .all()
@@ -512,7 +533,7 @@ async def get_upload_history(request: Request, db: Session = Depends(get_db)):
                 {
                     "upload_date": h.dm_load_date.isoformat(),
                     "record_count": h.record_count,
-                    "total_sales": float(h.total_sales)
+                    "total_sales": float(h.total_sales) if h.total_sales else 0.0
                 }
                 for h in history
             ]

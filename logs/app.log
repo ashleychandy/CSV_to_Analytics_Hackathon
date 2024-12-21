@@ -20,3 +20,50 @@ Traceback (most recent call last):
   File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
     version = _bcrypt.__about__.__version__
 AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 15:14:40,486 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:14:40,496 - src.main - INFO - Application startup completed
+2024-12-21 15:14:40,497 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:14:49,969 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:14:49,979 - src.main - INFO - Application startup completed
+2024-12-21 15:14:49,980 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:14:58,706 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:14:58,716 - src.main - INFO - Application startup completed
+2024-12-21 15:14:58,716 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:15:11,597 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 15:15:24,419 - src.main - ERROR - Error processing upload: time data "2024-12-09" doesn't match format "%m/%d/%y", at position 0. You might want to try:
+    - passing `format` if your strings have a consistent format;
+    - passing `format='ISO8601'` if your strings are all ISO8601 but not necessarily in exactly the same format;
+    - passing `format='mixed'`, and the format will be inferred for each element individually. You might want to use `dayfirst` alongside this.
+2024-12-21 15:15:58,123 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:15:58,133 - src.main - INFO - Application startup completed
+2024-12-21 15:15:58,133 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:16:08,865 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:16:08,875 - src.main - INFO - Application startup completed
+2024-12-21 15:16:08,875 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:17:07,508 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:17:07,520 - src.main - INFO - Application startup completed
+2024-12-21 15:17:07,520 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:17:10,776 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 15:17:19,657 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:17:19,667 - src.main - INFO - Application startup completed
+2024-12-21 15:17:19,668 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:17:29,939 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:17:29,949 - src.main - INFO - Application startup completed
+2024-12-21 15:17:29,949 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:17:41,998 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:17:42,010 - src.main - INFO - Application startup completed
+2024-12-21 15:17:42,010 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:17:50,134 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:17:50,144 - src.main - INFO - Application startup completed
+2024-12-21 15:17:50,144 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 15:18:15,364 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 15:18:15,375 - src.main - INFO - Application startup completed
+2024-12-21 15:18:15,375 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
