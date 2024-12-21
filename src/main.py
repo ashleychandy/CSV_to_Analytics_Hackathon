@@ -1,28 +1,34 @@
 import os
 import logging
-from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends, BackgroundTasks
+from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends, BackgroundTasks, Form
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlalchemy import create_engine, func
-from sqlalchemy.orm import sessionmaker, Session
-from models.pos_transaction import Base, POSTransaction
-from services.etl_service import ETLService
-from dotenv import load_dotenv
-from fastapi.middleware.cors import CORSMiddleware
-import json
-from datetime import datetime
-from typing import List, Dict
-from db.database import get_db, mongodb
-from config.settings import settings
+from sqlalchemy.orm import Session
+from sqlalchemy import func
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from starlette.middleware.sessions import SessionMiddleware
+import uvicorn
+from datetime import datetime, timedelta
 import asyncio
-from fastapi.responses import HTMLResponse, JSONResponse
+
+from src.models.user import User
+from src.models.pos_transaction import POSTransaction
+from src.utils.auth import (
+    verify_password, create_access_token, get_current_user,
+    ACCESS_TOKEN_EXPIRE_MINUTES, get_password_hash
+)
+from src.repositories.user_repository import UserRepository
+from src.services.etl_service import ETLService
+from src.db.init_db import engine, SessionLocal, get_db, init_database
+from src.config.settings import settings
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('logs/etl.log'),
+        logging.FileHandler('logs/app.log'),
         logging.StreamHandler()
     ]
 )
@@ -36,42 +42,29 @@ app = FastAPI(
     version=settings.api_version
 )
 
-# Add CORS middleware
+# Add session middleware
 app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    SessionMiddleware,
+    secret_key=settings.secret_key,
+    session_cookie="session",
+    max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,  # Match token expiry
+    same_site="lax",
+    https_only=False  # Set to True in production with HTTPS
 )
 
-# Mount static files and templates
+# Mount static files
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
+
+# Templates
 templates = Jinja2Templates(directory="src/templates")
 
-# Database setup
-def init_db():
-    """Initialize the database"""
-    load_dotenv()
-    database_url = os.getenv("DATABASE_URL", "sqlite:///./pos_transactions.db")
-    engine = create_engine(
-        database_url,
-        connect_args={"check_same_thread": False} if database_url.startswith("sqlite") else {}
-    )
-    Base.metadata.create_all(bind=engine)
-    return engine
+# Initialize database
+engine, SessionLocal = init_database()
 
-# Initialize database and session maker
-engine = init_db()
-SessionLocal = sessionmaker(bind=engine)
-
-# Dependency to get DB session
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# Initialize user repository
+def get_user_repository(db: Session = Depends(get_db)):
+    """Get user repository with database session."""
+    return UserRepository(db)
 
 # Status tracking
 class ETLStatus:
@@ -93,12 +86,15 @@ etl_status = ETLStatus()
 
 # Background sync task
 async def sync_data_periodically():
-    """Background task to sync data from MongoDB to SQLite periodically"""
+    """Background task to sync data periodically"""
     while True:
         try:
-            db = next(get_db())
+            db = SessionLocal()
             etl_service = ETLService(db)
-            result = await etl_service.sync_service.sync_transactions(settings.batch_size)
+            result = await etl_service.process_file(
+                file_path=None,  # No file path for sync
+                user_id=None  # No user ID for sync
+            )
             logger.info(f"Periodic sync completed: {result}")
         except Exception as e:
             logger.error(f"Error in periodic sync: {str(e)}")
@@ -109,308 +105,434 @@ async def sync_data_periodically():
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize MongoDB connection and start background sync task"""
+    """Start background tasks"""
     try:
-        await mongodb.connect()
         asyncio.create_task(sync_data_periodically())
         logger.info("Application startup completed")
     except Exception as e:
         logger.error(f"Error during startup: {str(e)}")
         raise
 
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Close MongoDB connection"""
-    try:
-        await mongodb.disconnect()
-        logger.info("Application shutdown completed")
-    except Exception as e:
-        logger.error(f"Error during shutdown: {str(e)}")
-
-# Routes
-@app.get("/")
+# Route handlers
+@app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
-    """Render the dashboard"""
+    """Root endpoint that redirects to login if not authenticated."""
+    if "user" not in request.session:
+        return RedirectResponse(url="/login", status_code=303)
     return templates.TemplateResponse(
-        "dashboard.html", 
-        {
-            "request": request, 
-            "status": etl_status.status,
-            "active_page": "dashboard"
-        }
+        "dashboard.html",
+        {"request": request, "user": request.session["user"]}
     )
 
-@app.get("/upload")
-async def upload_page(request: Request):
-    """Render the upload page"""
-    return templates.TemplateResponse(
-        "upload.html", 
-        {
-            "request": request, 
-            "status": etl_status.status,
-            "active_page": "upload"
-        }
-    )
+@app.get("/login", response_class=HTMLResponse)
+async def login_page(request: Request):
+    """Login page."""
+    if "user" in request.session:
+        return RedirectResponse(url="/", status_code=303)
+    return templates.TemplateResponse("login.html", {"request": request})
 
-@app.get("/transactions")
-async def transactions_page(request: Request):
-    """Render the transactions page"""
-    return templates.TemplateResponse(
-        "transactions.html", 
-        {
-            "request": request, 
-            "status": etl_status.status,
-            "active_page": "transactions"
-        }
-    )
+@app.post("/login")
+async def login(
+    request: Request,
+    username: str = Form(...),
+    password: str = Form(...),
+    user_repository: UserRepository = Depends(get_user_repository)
+):
+    """Login endpoint."""
+    # Clear any existing session
+    request.session.clear()
+    
+    user = user_repository.get_by_username(username)
+    if not user or not verify_password(password, user.password_hash):
+        return templates.TemplateResponse(
+            "login.html",
+            {"request": request, "error": "Invalid username or password"},
+            status_code=401
+        )
 
-@app.get("/analytics")
-async def analytics_page(request: Request):
-    """Render the analytics page"""
-    return templates.TemplateResponse(
-        "analytics.html", 
-        {
-            "request": request, 
-            "status": etl_status.status,
-            "active_page": "analytics"
-        }
-    )
-
-@app.get("/api/status")
-async def get_status():
-    """Get current ETL status"""
-    return {
-        "status": etl_status.status,
-        "processed_count": etl_status.processed_count,
-        "processing_time": etl_status.processing_time,
-        "last_update": etl_status.last_update.isoformat() if etl_status.last_update else None
+    # Create session
+    request.session["user"] = {
+        "id": user.id,
+        "username": user.username,
+        "role": user.role
     }
+    
+    # Create access token
+    access_token = create_access_token(
+        data={"sub": user.username, "role": user.role}
+    )
+    
+    response = RedirectResponse(url="/", status_code=303)
+    response.delete_cookie("access_token")  # Clear any existing token
+    response.set_cookie(
+        key="access_token",
+        value=f"Bearer {access_token}",
+        httponly=True,
+        max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        samesite="lax"
+    )
+    return response
+
+@app.get("/logout")
+async def logout(request: Request):
+    """Logout endpoint."""
+    # Clear session
+    request.session.clear()
+    
+    # Create response with redirect
+    response = RedirectResponse(url="/login", status_code=303)
+    
+    # Clear cookies
+    response.delete_cookie("access_token")
+    response.delete_cookie("session")
+    
+    return response
+
+@app.get("/upload", response_class=HTMLResponse)
+async def upload_page(request: Request):
+    """Upload page."""
+    if "user" not in request.session:
+        return RedirectResponse(url="/login", status_code=303)
+    return templates.TemplateResponse(
+        "upload.html",
+        {
+            "request": request,
+            "user": request.session["user"],
+            "settings": {
+                "max_file_size": settings.max_file_size
+            }
+        }
+    )
 
 @app.post("/api/upload")
 async def upload_file(
+    request: Request,
     file: UploadFile = File(...),
-    background_tasks: BackgroundTasks = None,
     db: Session = Depends(get_db)
 ):
-    """Handle file upload and trigger ETL process"""
+    """Handle file upload."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
     try:
-        # Validate file extension
-        if not file.filename.lower().endswith('.csv'):
-            return JSONResponse(
-                status_code=400,
-                content={"status": "error", "message": "Only CSV files are allowed"}
-            )
-
-        # Validate file size
-        file_size = 0
-        chunk_size = 8192  # 8KB chunks
-        content = bytearray()
-        
-        while True:
-            chunk = await file.read(chunk_size)
-            if not chunk:
-                break
-            file_size += len(chunk)
-            if file_size > settings.max_file_size:
-                return JSONResponse(
-                    status_code=400,
-                    content={"status": "error", "message": f"File size exceeds maximum limit of {settings.max_file_size / (1024*1024)}MB"}
-                )
-            content.extend(chunk)
-
         # Save file
-        os.makedirs(settings.upload_dir, exist_ok=True)
         file_path = os.path.join(settings.upload_dir, file.filename)
-        
         with open(file_path, "wb") as buffer:
+            content = await file.read()
             buffer.write(content)
-
-        # Process file
-        try:
-            etl_service = ETLService(db)
-            result = await etl_service.process_file(file_path)
-            
-            return JSONResponse(
-                status_code=200,
-                content={
-                    "status": "success",
-                    "message": "File processed successfully",
-                    "details": result
-                }
-            )
-        except Exception as e:
-            logger.error(f"Error processing file: {str(e)}")
-            # Clean up the file if processing fails
-            if os.path.exists(file_path):
-                os.remove(file_path)
-            return JSONResponse(
-                status_code=500,
-                content={
-                    "status": "error",
-                    "message": "Error processing file",
-                    "details": str(e)
-                }
-            )
-
-    except Exception as e:
-        logger.error(f"Error handling upload: {str(e)}")
-        return JSONResponse(
-            status_code=500,
-            content={
-                "status": "error",
-                "message": "Internal Server Error",
-                "details": str(e)
-            }
-        )
-
-@app.post("/api/process")
-async def process_files(db: Session = Depends(get_db)):
-    """Process all files in the input directory"""
-    try:
-        start_time = datetime.now()
-        etl_status.update("Processing all files...")
         
-        input_dir = "data/input"
-        if not os.path.exists(input_dir):
-            os.makedirs(input_dir)
-
+        # Process file
         etl_service = ETLService(db)
-        processed_count = 0
-
-        for filename in os.listdir(input_dir):
-            if filename.endswith('.csv'):
-                file_path = os.path.join(input_dir, filename)
-                etl_service.process_file(file_path)
-                processed_count += 1
-                etl_status.update(f"Processed {processed_count} files...", count=processed_count)
-
-        processing_time = (datetime.now() - start_time).total_seconds()
-        etl_status.update("Completed", time=processing_time)
-
-        return {"message": f"Processed {processed_count} files successfully"}
+        result = await etl_service.process_file(
+            file_path=file_path,
+            user_id=request.session["user"]["id"]
+        )
+        
+        return JSONResponse(content=result)
     except Exception as e:
-        etl_status.update(f"Error: {str(e)}")
+        logger.error(f"Error processing upload: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+def get_user_data_filter(user: dict, query, db: Session):
+    """Apply user-specific data filter to query."""
+    if user["role"] == "admin":
+        return query  # Admin can see all data
+    elif user["role"] == "manager":
+        # Managers can see their own data and data from regular users
+        regular_user_ids = db.query(User.id).filter(User.role == "user").subquery()
+        return query.filter(
+            (POSTransaction.user_id == user["id"]) | 
+            (POSTransaction.user_id.in_(regular_user_ids))
+        )
+    else:
+        # Regular users can only see their own data
+        return query.filter(POSTransaction.user_id == user["id"])
 
 @app.get("/api/data")
 async def get_data(
+    request: Request,
     page: int = 1,
     per_page: int = 10,
     db: Session = Depends(get_db)
 ):
-    """Get paginated transaction data"""
-    offset = (page - 1) * per_page
-    total = db.query(POSTransaction).count()
-    transactions = db.query(POSTransaction).offset(offset).limit(per_page).all()
+    """Get paginated transaction data."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
     
-    return {
-        "data": [
-            {
-                "id": t.id,
-                "store_code": t.store_code,
-                "store_display_name": t.store_display_name,
-                "trans_date": t.trans_date.isoformat(),
-                "trans_time": t.trans_time,
-                "trans_no": t.trans_no,
-                "net_sales_header_values": t.net_sales_header_values,
-                "quantity": t.quantity,
-                "tender": t.tender
-            }
-            for t in transactions
-        ],
-        "total": total,
-        "page": page,
-        "per_page": per_page,
-        "total_pages": (total + per_page - 1) // per_page
-    }
-
-@app.get("/api/analytics")
-async def get_analytics(db: Session = Depends(get_db)):
-    """Get transaction analytics"""
     try:
-        # Total sales
-        total_sales = db.query(func.sum(POSTransaction.net_sales_header_values)).scalar() or 0
+        # Get user's transactions with filtering
+        query = db.query(POSTransaction)
+        query = get_user_data_filter(request.session["user"], query, db)
         
-        # Total transactions
-        total_transactions = db.query(POSTransaction).count()
-        
-        # Sales by tender type
-        sales_by_tender = db.query(
-            POSTransaction.tender,
-            func.count(POSTransaction.id).label('count'),
-            func.sum(POSTransaction.net_sales_header_values).label('total')
-        ).group_by(POSTransaction.tender).all()
-        
-        # Sales by store
-        sales_by_store = db.query(
-            POSTransaction.store_code,
-            POSTransaction.store_display_name,
-            func.count(POSTransaction.id).label('count'),
-            func.sum(POSTransaction.net_sales_header_values).label('total')
-        ).group_by(POSTransaction.store_code).all()
+        total = query.count()
+        transactions = query.offset((page - 1) * per_page).limit(per_page).all()
         
         return {
-            "total_sales": float(total_sales),
-            "total_transactions": total_transactions,
-            "average_transaction_value": float(total_sales / total_transactions) if total_transactions > 0 else 0,
-            "sales_by_tender": [
+            "data": [t.__dict__ for t in transactions],
+            "total": total,
+            "page": page,
+            "per_page": per_page
+        }
+    except Exception as e:
+        logger.error(f"Error fetching data: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/analytics")
+async def get_analytics(request: Request, db: Session = Depends(get_db)):
+    """Get analytics data."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    try:
+        # Base query with user filtering
+        query = db.query(POSTransaction)
+        query = get_user_data_filter(request.session["user"], query, db)
+        
+        # Calculate total sales and transactions
+        totals = query.with_entities(
+            func.sum(POSTransaction.net_sales_header_values).label("total_sales"),
+            func.count().label("total_transactions"),
+            func.sum(POSTransaction.quantity).label("total_items"),
+            func.avg(POSTransaction.net_sales_header_values).label("avg_transaction_value")
+        ).first()
+        
+        # Sales by tender type
+        sales_by_tender = (
+            query.with_entities(
+                POSTransaction.tender,
+                func.sum(POSTransaction.net_sales_header_values).label("total"),
+                func.count().label("count")
+            )
+            .group_by(POSTransaction.tender)
+            .all()
+        )
+        
+        # Sales by store
+        sales_by_store = (
+            query.with_entities(
+                POSTransaction.store_display_name,
+                func.sum(POSTransaction.net_sales_header_values).label("total"),
+                func.count().label("transaction_count"),
+                func.sum(POSTransaction.quantity).label("item_count")
+            )
+            .group_by(POSTransaction.store_display_name)
+            .all()
+        )
+        
+        # Sales by date
+        sales_by_date = (
+            query.with_entities(
+                POSTransaction.trans_date,
+                func.sum(POSTransaction.net_sales_header_values).label("total"),
+                func.count().label("transaction_count")
+            )
+            .group_by(POSTransaction.trans_date)
+            .order_by(POSTransaction.trans_date.desc())
+            .limit(30)  # Last 30 days
+            .all()
+        )
+        
+        # Calculate percentages for tender types
+        total_sales = float(totals.total_sales or 0)
+        tender_data = [
+            {
+                "tender": t.tender or "Unknown",
+                "total": float(t.total or 0),
+                "count": t.count,
+                "percentage": (float(t.total or 0) / total_sales * 100) if total_sales > 0 else 0
+            }
+            for t in sales_by_tender
+        ]
+        
+        # Calculate store performance metrics
+        store_data = [
+            {
+                "store": s.store_display_name,
+                "total_sales": float(s.total or 0),
+                "transaction_count": s.transaction_count,
+                "item_count": s.item_count,
+                "avg_transaction": float(s.total or 0) / s.transaction_count if s.transaction_count > 0 else 0,
+                "items_per_transaction": s.item_count / s.transaction_count if s.transaction_count > 0 else 0
+            }
+            for s in sales_by_store
+        ]
+        
+        # Format daily sales data
+        daily_data = [
+            {
+                "date": d.trans_date.strftime("%Y-%m-%d"),
+                "total": float(d.total or 0),
+                "transaction_count": d.transaction_count,
+                "avg_transaction": float(d.total or 0) / d.transaction_count if d.transaction_count > 0 else 0
+            }
+            for d in sales_by_date
+        ]
+        
+        return {
+            "summary": {
+                "total_sales": float(totals.total_sales or 0),
+                "total_transactions": totals.total_transactions,
+                "total_items": totals.total_items,
+                "avg_transaction_value": float(totals.avg_transaction_value or 0),
+                "items_per_transaction": (totals.total_items / totals.total_transactions) 
+                    if totals.total_transactions > 0 else 0
+            },
+            "sales_by_tender": tender_data,
+            "sales_by_store": store_data,
+            "daily_sales": daily_data
+        }
+    except Exception as e:
+        logger.error(f"Error fetching analytics: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/analytics", response_class=HTMLResponse)
+async def analytics_page(request: Request):
+    """Analytics page."""
+    if "user" not in request.session:
+        return RedirectResponse(url="/login", status_code=303)
+    return templates.TemplateResponse(
+        "analytics.html",
+        {"request": request, "user": request.session["user"]}
+    )
+
+@app.get("/transactions", response_class=HTMLResponse)
+async def transactions_page(request: Request):
+    """Transactions page."""
+    if "user" not in request.session:
+        return RedirectResponse(url="/login", status_code=303)
+    return templates.TemplateResponse(
+        "transactions.html",
+        {"request": request, "user": request.session["user"]}
+    )
+
+@app.get("/settings", response_class=HTMLResponse)
+async def settings_page(request: Request):
+    """Settings page."""
+    if "user" not in request.session:
+        return RedirectResponse(url="/login", status_code=303)
+    return templates.TemplateResponse(
+        "settings.html",
+        {
+            "request": request,
+            "user": request.session["user"],
+            "settings": {
+                "batch_size": settings.batch_size,
+                "sync_interval": settings.sync_interval,
+                "max_file_size": settings.max_file_size
+            }
+        }
+    )
+
+@app.post("/api/settings/password")
+async def update_password(
+    request: Request,
+    current_password: str = Form(...),
+    new_password: str = Form(...),
+    confirm_password: str = Form(...)
+):
+    """Update user password."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    if new_password != confirm_password:
+        raise HTTPException(status_code=400, detail="Passwords do not match")
+    
+    user = user_repository.get_by_username(request.session["user"]["username"])
+    if not verify_password(current_password, user.password_hash):
+        raise HTTPException(status_code=400, detail="Current password is incorrect")
+    
+    # Update password
+    user.password_hash = get_password_hash(new_password)
+    user_repository.update(user)
+    
+    return {"message": "Password updated successfully"}
+
+@app.post("/api/settings/system")
+async def update_system_settings(
+    request: Request,
+    batch_size: int = Form(...),
+    sync_interval: int = Form(...),
+    max_file_size: int = Form(...)
+):
+    """Update system settings."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    if request.session["user"]["role"] != "admin":
+        raise HTTPException(status_code=403, detail="Not authorized")
+    
+    # Validate settings
+    if batch_size < 1 or batch_size > 10000:
+        raise HTTPException(status_code=400, detail="Invalid batch size")
+    
+    if sync_interval < 60 or sync_interval > 3600:
+        raise HTTPException(status_code=400, detail="Invalid sync interval")
+    
+    if max_file_size < 1024 * 1024 or max_file_size > 100 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="Invalid file size")
+    
+    # Update settings
+    settings.batch_size = batch_size
+    settings.sync_interval = sync_interval
+    settings.max_file_size = max_file_size
+    
+    return {"message": "System settings updated successfully"}
+
+@app.post("/api/data/clear")
+async def clear_data(request: Request, db: Session = Depends(get_db)):
+    """Clear all transaction data for the user."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    try:
+        query = db.query(POSTransaction)
+        if request.session["user"]["role"] != "admin":
+            query = query.filter(POSTransaction.user_id == request.session["user"]["id"])
+        
+        deleted_count = query.delete(synchronize_session=False)
+        db.commit()
+        
+        return {
+            "status": "success",
+            "records_deleted": deleted_count,
+            "message": f"Successfully deleted {deleted_count} records"
+        }
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Error clearing data: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/uploads/history")
+async def get_upload_history(request: Request, db: Session = Depends(get_db)):
+    """Get upload history for the user."""
+    if "user" not in request.session:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    
+    try:
+        # Group by load date and get counts
+        query = db.query(
+            POSTransaction.dm_load_date,
+            func.count().label('record_count'),
+            func.sum(POSTransaction.net_sales_header_values).label('total_sales')
+        )
+        
+        if request.session["user"]["role"] != "admin":
+            query = query.filter(POSTransaction.user_id == request.session["user"]["id"])
+        
+        history = query.group_by(POSTransaction.dm_load_date)\
+                      .order_by(POSTransaction.dm_load_date.desc())\
+                      .all()
+        
+        return {
+            "history": [
                 {
-                    "tender": tender or "Unknown",
-                    "count": count,
-                    "total": float(total)
+                    "upload_date": h.dm_load_date.isoformat(),
+                    "record_count": h.record_count,
+                    "total_sales": float(h.total_sales)
                 }
-                for tender, count, total in sales_by_tender
-            ],
-            "sales_by_store": [
-                {
-                    "store_code": store_code,
-                    "store_name": store_name,
-                    "count": count,
-                    "total": float(total)
-                }
-                for store_code, store_name, count, total in sales_by_store
+                for h in history
             ]
         }
     except Exception as e:
-        logger.error(f"Error getting analytics: {str(e)}")
+        logger.error(f"Error fetching upload history: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/api/export")
-async def export_data(db: Session = Depends(get_db)):
-    """Export all transaction data as CSV"""
-    try:
-        transactions = db.query(POSTransaction).all()
-        
-        if not transactions:
-            raise HTTPException(status_code=404, detail="No data to export")
-        
-        # Convert to list of dictionaries
-        data = [
-            {
-                "id": t.id,
-                "store_code": t.store_code,
-                "store_display_name": t.store_display_name,
-                "trans_date": t.trans_date.isoformat(),
-                "trans_time": t.trans_time,
-                "trans_no": t.trans_no,
-                "till_no": t.till_no,
-                "discount_header": t.discount_header,
-                "tax_header": t.tax_header,
-                "net_sales_header_values": t.net_sales_header_values,
-                "quantity": t.quantity,
-                "trans_type": t.trans_type,
-                "tender": t.tender,
-                "dm_load_date": t.dm_load_date,
-                "dm_load_delta_id": t.dm_load_delta_id
-            }
-            for t in transactions
-        ]
-        
-        return data
-    except Exception as e:
-        logger.error(f"Error exporting data: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -24,30 +24,36 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                {% if user.role in ['admin', 'manager'] %}
                 <li {% if active_page == 'upload' %}class="active"{% endif %}>
                     <a href="/upload" title="Upload Data">
                         <i class='bx bx-upload'></i>
                         <span>Upload Data</span>
                     </a>
                 </li>
+                {% endif %}
                 <li {% if active_page == 'transactions' %}class="active"{% endif %}>
                     <a href="/transactions" title="Transactions">
                         <i class='bx bx-list-ul'></i>
                         <span>Transactions</span>
                     </a>
                 </li>
+                {% if user.role in ['admin', 'manager'] %}
                 <li {% if active_page == 'analytics' %}class="active"{% endif %}>
                     <a href="/analytics" title="Analytics">
                         <i class='bx bx-line-chart'></i>
                         <span>Analytics</span>
                     </a>
                 </li>
+                {% endif %}
+                {% if user.role == 'admin' %}
                 <li {% if active_page == 'settings' %}class="active"{% endif %}>
                     <a href="/settings" title="Settings">
                         <i class='bx bx-cog'></i>
                         <span>Settings</span>
                     </a>
                 </li>
+                {% endif %}
             </ul>
 
             <div class="sidebar-footer">
@@ -107,11 +113,14 @@
                             <button class="btn btn-link dropdown-toggle d-flex align-items-center" type="button" 
                                     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class='bx bx-user-circle fs-5 me-2'></i>
-                                <span class="d-none d-md-inline">Admin</span>
+                                <span class="d-none d-md-inline">{{ user.username }}</span>
+                                <span class="badge bg-primary ms-2 text-uppercase">{{ user.role }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                 <li><a class="dropdown-item" href="/profile"><i class='bx bx-user me-2'></i>Profile</a></li>
+                                {% if user.role == 'admin' %}
                                 <li><a class="dropdown-item" href="/settings"><i class='bx bx-cog me-2'></i>Settings</a></li>
+                                {% endif %}
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item text-danger" href="/logout"><i class='bx bx-log-out me-2'></i>Logout</a></li>
                             </ul>

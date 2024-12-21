@@ -1,20 +1,175 @@
 import pandas as pd
 import logging
 from datetime import datetime
+import uuid
+from typing import Any, Dict, List
 from sqlalchemy.orm import Session
-from sqlalchemy.dialects.sqlite import insert
 from src.models.pos_transaction import POSTransaction
-from src.db.database import mongodb
-from src.services.data_sync_service import DataSyncService
-from typing import List, Dict, Any
-import os
+from src.config.settings import settings
 
 logger = logging.getLogger(__name__)
 
 class ETLService:
+    """Service for ETL operations."""
+
     def __init__(self, db: Session):
+        """Initialize ETL service."""
         self.db = db
-        self.sync_service = DataSyncService(db)
+        self.required_columns = {
+            'store_code',
+            'store_display_name',
+            'trans_date',
+            'trans_time',
+            'trans_no',
+            'till_no',
+            'net_sales_header_values',
+            'quantity'
+        }
+
+    def validate_data(self, df: pd.DataFrame) -> bool:
+        """Validate DataFrame has required columns."""
+        # Convert column names to lowercase for case-insensitive comparison
+        df_columns = {col.lower() for col in df.columns}
+        return self.required_columns.issubset(df_columns)
+
+    def clean_numeric(self, value: Any) -> float:
+        """Clean numeric values."""
+        if pd.isna(value):
+            return 0.0
+        try:
+            return float(value)
+        except (ValueError, TypeError):
+            return 0.0
+
+    async def process_file(self, file_path: str = None, user_id: int = None) -> dict:
+        """Process CSV file and store in database."""
+        try:
+            if file_path:
+                # Read and validate CSV
+                df = pd.read_csv(file_path)
+                if not self.validate_data(df):
+                    raise ValueError(f"Missing required columns. Required: {self.required_columns}")
+
+                # Convert column names to match database fields
+                df.columns = [col.lower() for col in df.columns]
+
+                # Add user_id to each record
+                if user_id:
+                    df['user_id'] = user_id
+
+                # Convert date and time fields
+                df['trans_date'] = pd.to_datetime(df['trans_date'])
+                df['dm_load_date'] = datetime.now()
+                df['dm_load_delta_id'] = str(uuid.uuid4())
+
+                # Clean numeric fields
+                df['net_sales_header_values'] = df['net_sales_header_values'].apply(self.clean_numeric)
+                df['discount_header'] = df.get('discount_header', 0.0).apply(self.clean_numeric)
+                df['tax_header'] = df.get('tax_header', 0.0).apply(self.clean_numeric)
+                df['quantity'] = df['quantity'].fillna(0).astype(int)
+
+                # Set default values for optional fields
+                df['trans_type'] = df.get('trans_type', 'SALE')
+                df['tender'] = df.get('tender', 'CASH')
+
+                # Convert to records
+                records = df.to_dict('records')
+
+                # Insert in batches
+                batch_size = settings.batch_size
+                for i in range(0, len(records), batch_size):
+                    batch = records[i:i + batch_size]
+                    self.db.bulk_insert_mappings(POSTransaction, batch)
+                    self.db.commit()
+
+                return {
+                    "status": "success",
+                    "records_processed": len(records),
+                    "message": f"Successfully processed {len(records)} records"
+                }
+
+            return {
+                "status": "success",
+                "records_synced": 0,
+                "message": "Successfully synced 0 records"
+            }
+
+        except Exception as e:
+            self.db.rollback()
+            raise e
+
+    async def _process_batch(self, df: pd.DataFrame, user_id: int) -> int:
+        """Process a batch of records."""
+        try:
+            # Convert column names to lowercase
+            df.columns = df.columns.str.lower()
+            
+            # Validate data
+            self.validate_data(df)
+            
+            records = []
+            for _, row in df.iterrows():
+                try:
+                    # Convert date string to datetime
+                    trans_date = pd.to_datetime(row.get('trans_date')).date() if pd.notna(row.get('trans_date')) else None
+                    if not trans_date:
+                        logger.warning(f"Skipping record with invalid date: {row.get('trans_date')}")
+                        continue
+
+                    transaction = POSTransaction(
+                        user_id=user_id,
+                        store_code=str(row.get('store_code', '')),
+                        store_display_name=str(row.get('store_display_name', '')),
+                        trans_date=trans_date,
+                        trans_time=str(row.get('trans_time', '')),
+                        trans_no=str(row.get('trans_no', '')),
+                        till_no=str(row.get('till_no', '')),
+                        discount_header=self.clean_numeric(row.get('discount_header', 0)),
+                        tax_header=self.clean_numeric(row.get('tax_header', 0)),
+                        net_sales_header_values=self.clean_numeric(row.get('net_sales_header_values', 0)),
+                        quantity=int(self.clean_numeric(row.get('quantity', 0))),
+                        trans_type=str(row.get('trans_type', 'SALE')),
+                        tender=str(row.get('tender', 'CASH')),
+                        dm_load_date=datetime.now(),
+                        dm_load_delta_id=1
+                    )
+                    records.append(transaction)
+
+                    if len(records) >= settings.batch_size:
+                        self.db.bulk_save_objects(records)
+                        self.db.commit()
+                        records = []
+
+                except Exception as e:
+                    logger.error(f"Error processing record: {str(e)}")
+                    continue
+
+            if records:
+                self.db.bulk_save_objects(records)
+                self.db.commit()
+
+            return len(df)
+
+        except Exception as e:
+            self.db.rollback()
+            logger.error(f"Error processing batch: {str(e)}")
+            raise
+
+    async def _sync_transactions(self) -> int:
+        """Sync transactions from source to destination."""
+        try:
+            # Implement your sync logic here
+            # For example, syncing from a staging table or external source
+            return 0
+        except Exception as e:
+            logger.error(f"Error syncing transactions: {str(e)}")
+            raise
+
+    def clean_string(self, value: Any) -> str:
+        """Clean and convert string values."""
+        if pd.isna(value):
+            return ''
+        return str(value).strip()
 
     def extract_from_csv(self, file_path: str) -> pd.DataFrame:
         """Extract data from CSV file"""
@@ -82,38 +237,4 @@ class ETLService:
             return loaded_count
         except Exception as e:
             logger.error(f"Error loading data into MongoDB: {str(e)}")
-            raise
-
-    async def process_file(self, file_path: str) -> Dict[str, Any]:
-        """Process the entire ETL pipeline for a file"""
-        try:
-            # Extract
-            df = self.extract_from_csv(file_path)
-            
-            # Transform
-            records = self.transform_data(df)
-            
-            # Load to MongoDB
-            loaded_count = await self.load_to_mongodb(records)
-            
-            if loaded_count == 0:
-                raise Exception("No records were loaded into MongoDB")
-            
-            # Sync to SQLite
-            sync_result = await self.sync_service.sync_transactions(batch_size=loaded_count)
-            
-            result = {
-                "file": os.path.basename(file_path),
-                "records_extracted": len(df),
-                "records_transformed": len(records),
-                "records_loaded_mongodb": loaded_count,
-                "records_synced_sqlite": sync_result["synced"],
-                "sync_errors": sync_result["errors"]
-            }
-            
-            logger.info(f"ETL process completed successfully for {file_path}: {result}")
-            return result
-            
-        except Exception as e:
-            logger.error(f"ETL process failed: {str(e)}")
             raise

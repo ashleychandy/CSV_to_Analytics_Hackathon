@@ -1,0 +1,6 @@
+store_code,store_display_name,trans_date,trans_time,trans_no,till_no,net_sales_header_values,quantity,trans_type,tender,discount_header,tax_header
+S001,Store One,2024-01-21,12:30:00,T001,1,100.50,2,SALE,CASH,0,10.05
+S001,Store One,2024-01-21,12:35:00,T002,1,75.25,1,SALE,CREDIT,5.00,7.52
+S002,Store Two,2024-01-21,13:00:00,T003,2,200.00,3,SALE,DEBIT,10.00,20.00
+S002,Store Two,2024-01-21,13:15:00,T004,2,150.75,2,SALE,CASH,0,15.07
+S003,Store Three,2024-01-21,14:00:00,T005,1,300.25,4,SALE,CREDIT,15.00,30.02 

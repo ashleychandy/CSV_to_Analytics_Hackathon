@@ -98,3 +98,1472 @@
 2024-12-21 12:24:01,956 - src.db.database - INFO - Disconnected from MongoDB
 2024-12-21 12:24:03,584 - src.db.database - INFO - Connected to MongoDB
 2024-12-21 12:24:21,065 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:58:29,097 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 13:58:50,364 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 13:59:05,679 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 13:59:13,097 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 13:59:50,034 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 13:59:59,143 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 14:00:01,053 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 14:00:16,682 - db.init_db - ERROR - Error initializing database: Textual SQL expression 'SELECT 1' should be explicitly declared as text('SELECT 1')
+2024-12-21 14:00:54,220 - db.init_db - INFO - Database initialized successfully
+2024-12-21 14:00:54,221 - src.main - INFO - Application startup completed
+2024-12-21 14:00:54,221 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:01:14,063 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:01:14,064 - src.main - INFO - Application startup completed
+2024-12-21 14:01:14,065 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:01:26,525 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:01:26,527 - src.main - INFO - Application startup completed
+2024-12-21 14:01:26,527 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:01:34,237 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:01:34,238 - src.main - INFO - Application startup completed
+2024-12-21 14:01:34,238 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:01:58,500 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:01:58,501 - src.main - INFO - Application startup completed
+2024-12-21 14:01:58,501 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:07,065 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:07,066 - src.main - INFO - Application startup completed
+2024-12-21 14:02:07,066 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:14,777 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:14,777 - src.main - INFO - Application startup completed
+2024-12-21 14:02:14,777 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:21,847 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:21,848 - src.main - INFO - Application startup completed
+2024-12-21 14:02:21,849 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:30,442 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:30,443 - src.main - INFO - Application startup completed
+2024-12-21 14:02:30,443 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:43,943 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:43,944 - src.main - INFO - Application startup completed
+2024-12-21 14:02:43,944 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:51,158 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:51,159 - src.main - INFO - Application startup completed
+2024-12-21 14:02:51,159 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:02:58,364 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:02:58,365 - src.main - INFO - Application startup completed
+2024-12-21 14:02:58,365 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:03:26,003 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:03:26,004 - src.main - INFO - Application startup completed
+2024-12-21 14:03:26,004 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:03:56,145 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:03:56,146 - src.main - INFO - Application startup completed
+2024-12-21 14:03:56,147 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:04:13,781 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:04:13,783 - src.main - INFO - Application startup completed
+2024-12-21 14:04:13,784 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:04:30,698 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:04:30,699 - src.main - INFO - Application startup completed
+2024-12-21 14:04:30,700 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:05:26,378 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:05:26,379 - src.main - INFO - Application startup completed
+2024-12-21 14:05:26,379 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:07:27,711 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:07:27,712 - src.main - INFO - Application startup completed
+2024-12-21 14:07:27,712 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:08:32,193 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:08:32,194 - src.main - INFO - Application startup completed
+2024-12-21 14:08:32,195 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:12:25,515 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:12:25,516 - src.main - INFO - Application startup completed
+2024-12-21 14:12:25,517 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:12:39,145 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:12:39,146 - src.main - INFO - Application startup completed
+2024-12-21 14:12:39,146 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:14:04,419 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:14:04,420 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:14:34,850 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:14:34,851 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:16:09,782 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:16:09,783 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:16:10,357 - src.main - INFO - Application startup completed
+2024-12-21 14:16:10,358 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:16:23,589 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:16:23,589 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:16:24,169 - src.main - INFO - Application startup completed
+2024-12-21 14:16:24,169 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:16:30,376 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:16:30,376 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:16:30,984 - src.main - INFO - Application startup completed
+2024-12-21 14:16:30,984 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:17:01,281 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:17:03,292 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:17:07,189 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:17:20,586 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:17:20,595 - src.services.etl_service - ERROR - Error processing batch: 'NoneType' object has no attribute 'date'
+2024-12-21 14:17:20,596 - src.services.etl_service - ERROR - Error in ETL process: 'NoneType' object has no attribute 'date'
+2024-12-21 14:17:48,708 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:17:48,709 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:17:49,291 - src.main - INFO - Application startup completed
+2024-12-21 14:17:49,291 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:18:12,938 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:18:12,939 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:18:13,533 - src.main - INFO - Application startup completed
+2024-12-21 14:18:13,533 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:18:31,586 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:18:31,587 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:18:32,162 - src.main - INFO - Application startup completed
+2024-12-21 14:18:32,163 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:18:50,578 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:18:50,579 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:18:51,156 - src.main - INFO - Application startup completed
+2024-12-21 14:18:51,156 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:19:34,158 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:19:34,158 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:19:34,758 - src.main - INFO - Application startup completed
+2024-12-21 14:19:34,759 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:19:37,974 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:19:37,975 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:19:38,554 - src.main - INFO - Application startup completed
+2024-12-21 14:19:38,554 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:20:05,473 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:20:05,473 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:20:06,054 - src.main - INFO - Application startup completed
+2024-12-21 14:20:06,054 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:20:15,822 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:20:15,823 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:20:15,837 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:20:15,837 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:20:16,409 - src.main - INFO - Application startup completed
+2024-12-21 14:20:16,409 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:20:16,425 - src.main - INFO - Application startup completed
+2024-12-21 14:20:16,425 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:20:45,195 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:20:45,200 - src.services.etl_service - ERROR - Error processing batch: Missing required columns: till_no, trans_no, net_sales_header_values, trans_time, trans_date, store_display_name, store_code
+2024-12-21 14:20:45,201 - src.services.etl_service - ERROR - Error in ETL process: Missing required columns: till_no, trans_no, net_sales_header_values, trans_time, trans_date, store_display_name, store_code
+2024-12-21 14:21:01,789 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:21:01,789 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:21:02,369 - src.main - INFO - Application startup completed
+2024-12-21 14:21:02,370 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:21:45,284 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:21:45,285 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:21:45,289 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:21:45,289 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:21:45,872 - src.main - INFO - Application startup completed
+2024-12-21 14:21:45,873 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:21:45,876 - src.main - INFO - Application startup completed
+2024-12-21 14:21:45,876 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:21:59,198 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:21:59,198 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:21:59,201 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:21:59,202 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:21:59,806 - src.main - INFO - Application startup completed
+2024-12-21 14:21:59,807 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:21:59,811 - src.main - INFO - Application startup completed
+2024-12-21 14:21:59,811 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:22:01,967 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:01,999 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:02,017 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:34,024 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:35,452 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:40,842 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:45,315 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:52,647 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:58,304 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:58,304 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:22:58,424 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:22:58,424 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:22:58,899 - src.main - INFO - Application startup completed
+2024-12-21 14:22:58,900 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:22:59,017 - src.main - INFO - Application startup completed
+2024-12-21 14:22:59,017 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:07,935 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:07,936 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:08,103 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:08,103 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:08,544 - src.main - INFO - Application startup completed
+2024-12-21 14:23:08,544 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:10,149 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:10,150 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:10,447 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:10,447 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:10,746 - src.main - INFO - Application startup completed
+2024-12-21 14:23:10,746 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:11,034 - src.main - INFO - Application startup completed
+2024-12-21 14:23:11,034 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:20,451 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:20,451 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:20,503 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:20,504 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:21,041 - src.main - INFO - Application startup completed
+2024-12-21 14:23:21,042 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:21,097 - src.main - INFO - Application startup completed
+2024-12-21 14:23:21,097 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:23,484 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:26,852 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:26,877 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:26,893 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:40,168 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:40,169 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:40,197 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:23:40,198 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:23:40,768 - src.main - INFO - Application startup completed
+2024-12-21 14:23:40,768 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:40,797 - src.main - INFO - Application startup completed
+2024-12-21 14:23:40,797 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:23:50,898 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:24:00,194 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:24:16,635 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:24:16,640 - src.services.etl_service - ERROR - Error processing batch: Missing required columns: trans_time, net_sales_header_values, store_code, trans_no, trans_date, till_no, store_display_name
+2024-12-21 14:24:16,641 - src.services.etl_service - ERROR - Error in ETL process: Missing required columns: trans_time, net_sales_header_values, store_code, trans_no, trans_date, till_no, store_display_name
+2024-12-21 14:25:20,964 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:20,964 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:25:20,978 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:20,978 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:25:21,562 - src.main - INFO - Application startup completed
+2024-12-21 14:25:21,562 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:25:21,565 - src.main - INFO - Application startup completed
+2024-12-21 14:25:21,565 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:25:26,073 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:26,073 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:25:26,075 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:26,076 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:25:26,680 - src.main - INFO - Application startup completed
+2024-12-21 14:25:26,680 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:25:26,680 - src.main - INFO - Application startup completed
+2024-12-21 14:25:26,681 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:25:28,919 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:28,940 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:25:28,953 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:06,463 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:06,463 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:26:07,050 - src.main - INFO - Application startup completed
+2024-12-21 14:26:07,050 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:26:34,136 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:34,137 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:26:34,194 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:34,194 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:26:34,339 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:34,340 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:26:34,744 - src.main - INFO - Application startup completed
+2024-12-21 14:26:34,744 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:26:34,799 - src.main - INFO - Application startup completed
+2024-12-21 14:26:34,799 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:26:34,934 - src.main - INFO - Application startup completed
+2024-12-21 14:26:34,934 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:26:47,010 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:47,041 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:26:47,060 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:00,418 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:00,418 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:27:00,523 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:00,523 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:27:00,536 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:00,537 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:27:01,024 - src.main - INFO - Application startup completed
+2024-12-21 14:27:01,024 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:27:01,124 - src.main - INFO - Application startup completed
+2024-12-21 14:27:01,124 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:27:01,136 - src.main - INFO - Application startup completed
+2024-12-21 14:27:01,137 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:27:16,195 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:29,276 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:37,506 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:27:39,123 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:28:14,937 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:28:32,056 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:28:32,057 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:28:32,059 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:28:32,060 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:28:32,075 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:28:32,076 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:28:32,663 - src.main - INFO - Application startup completed
+2024-12-21 14:28:32,663 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:28:32,665 - src.main - INFO - Application startup completed
+2024-12-21 14:28:32,665 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:28:32,681 - src.main - INFO - Application startup completed
+2024-12-21 14:28:32,681 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:29:41,611 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:29:41,612 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:29:41,611 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:41,611 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:41,612 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:42,211 - src.main - INFO - Application startup completed
+2024-12-21 14:29:42,211 - src.main - INFO - Application startup completed
+2024-12-21 14:29:42,211 - src.main - INFO - Application startup completed
+2024-12-21 14:29:42,211 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:29:42,211 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:29:42,211 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:29:59,018 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:29:59,019 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:59,427 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:29:59,428 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:59,435 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:29:59,435 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:29:59,650 - src.main - INFO - Application startup completed
+2024-12-21 14:29:59,651 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:00,024 - src.main - INFO - Application startup completed
+2024-12-21 14:30:00,024 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:00,032 - src.main - INFO - Application startup completed
+2024-12-21 14:30:00,032 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:08,346 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:08,347 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:08,347 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:08,385 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:08,386 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:08,956 - src.main - INFO - Application startup completed
+2024-12-21 14:30:08,956 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:08,959 - src.main - INFO - Application startup completed
+2024-12-21 14:30:08,959 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:09,002 - src.main - INFO - Application startup completed
+2024-12-21 14:30:09,002 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:19,184 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:19,184 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:19,186 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:19,187 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:19,216 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:19,216 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:19,793 - src.main - INFO - Application startup completed
+2024-12-21 14:30:19,793 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:19,794 - src.main - INFO - Application startup completed
+2024-12-21 14:30:19,795 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:19,820 - src.main - INFO - Application startup completed
+2024-12-21 14:30:19,820 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:27,331 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:27,332 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:27,336 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:27,336 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:27,338 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:27,339 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:30:27,939 - src.main - INFO - Application startup completed
+2024-12-21 14:30:27,940 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:27,943 - src.main - INFO - Application startup completed
+2024-12-21 14:30:27,944 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:27,947 - src.main - INFO - Application startup completed
+2024-12-21 14:30:27,947 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:30:28,144 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:28,167 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:28,186 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:28,207 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:28,601 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:42,086 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:45,224 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:45,244 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:49,585 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:49,614 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:56,860 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:30:57,005 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:00,140 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:04,204 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:05,362 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:07,120 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:12,627 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:15,436 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:19,097 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:31:19,126 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:32:00,917 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:32:03,522 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:32:04,032 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:32:05,832 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:18,116 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:18,116 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:18,117 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:18,117 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:18,749 - src.main - INFO - Application startup completed
+2024-12-21 14:33:18,749 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:33:18,757 - src.main - INFO - Application startup completed
+2024-12-21 14:33:18,757 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:33:18,809 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:18,810 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:19,396 - src.main - INFO - Application startup completed
+2024-12-21 14:33:19,397 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:33:32,452 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:32,453 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:32,453 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:32,454 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:32,466 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:32,466 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:51,053 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:51,053 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:51,061 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:51,061 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:33:51,061 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:51,061 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:33:51,655 - src.main - INFO - Application startup completed
+2024-12-21 14:33:51,655 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:33:51,664 - src.main - INFO - Application startup completed
+2024-12-21 14:33:51,664 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:33:51,665 - src.main - INFO - Application startup completed
+2024-12-21 14:33:51,665 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:34:00,006 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:00,007 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:34:00,592 - src.main - INFO - Application startup completed
+2024-12-21 14:34:00,592 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:34:04,475 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:04,475 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:34:04,612 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:04,612 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:34:04,618 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:04,618 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:34:05,080 - src.main - INFO - Application startup completed
+2024-12-21 14:34:05,080 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:34:05,208 - src.main - INFO - Application startup completed
+2024-12-21 14:34:05,209 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:34:05,215 - src.main - INFO - Application startup completed
+2024-12-21 14:34:05,215 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:34:13,057 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:18,669 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:20,790 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:21,878 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:22,716 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:23,170 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:28,494 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:30,830 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:31,464 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:32,714 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:35,771 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:35,802 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:58,646 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:34:58,646 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:34:59,225 - src.main - INFO - Application startup completed
+2024-12-21 14:34:59,226 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:35:01,890 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:04,081 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:23,834 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:23,834 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:35:24,418 - src.main - INFO - Application startup completed
+2024-12-21 14:35:24,419 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:35:29,565 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:31,329 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:32,675 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:38,090 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:39,693 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:43,664 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:43,811 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:45,683 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:46,211 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:49,185 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:55,830 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:57,806 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:35:58,817 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:16,915 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:23,077 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:32,856 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:34,097 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:36,158 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:36,175 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:41,736 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:36:41,736 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:36:42,318 - src.main - INFO - Application startup completed
+2024-12-21 14:36:42,318 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:36:43,571 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:37:02,598 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:37:02,599 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:37:03,195 - src.main - INFO - Application startup completed
+2024-12-21 14:37:03,196 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:37:14,256 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:37:14,256 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:37:14,850 - src.main - INFO - Application startup completed
+2024-12-21 14:37:14,851 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:37:15,059 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:37:15,067 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:37:15,075 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:37:15,077 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:38:11,710 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:11,711 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:38:12,296 - src.main - INFO - Application startup completed
+2024-12-21 14:38:12,296 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:38:12,302 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:12,307 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:38:14,516 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:14,517 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:38:15,097 - src.main - INFO - Application startup completed
+2024-12-21 14:38:15,097 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:38:15,491 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:15,498 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:38:20,820 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:20,820 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:38:21,402 - src.main - INFO - Application startup completed
+2024-12-21 14:38:21,402 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:38:31,604 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:31,605 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:38:32,185 - src.main - INFO - Application startup completed
+2024-12-21 14:38:32,185 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:38:35,064 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:35,068 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:38:36,760 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:38,389 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:38,396 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:42,306 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:42,309 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:38:48,107 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:49,827 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:51,182 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:38:51,193 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:18,865 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:18,902 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:20,450 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:21,111 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:30,176 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:30,184 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS sum_1 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?]
+[parameters: (2, 'user')]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:39:31,879 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:34,856 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:34,905 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:45,870 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:39:45,871 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:39:46,456 - src.main - INFO - Application startup completed
+2024-12-21 14:39:46,456 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:39:53,307 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:24,171 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:38,816 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:38,817 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:40:39,414 - src.main - INFO - Application startup completed
+2024-12-21 14:40:39,415 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:40:50,559 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:50,560 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:40:51,179 - src.main - INFO - Application startup completed
+2024-12-21 14:40:51,179 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:40:51,493 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:53,173 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:53,790 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:53,975 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:54,125 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:40:59,023 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:05,804 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:10,756 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:10,787 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:16,303 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:16,351 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:25,477 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:25,486 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS total_sales, count(*) AS total_transactions, sum(pos_transactions.quantity) AS total_items, avg(pos_transactions.net_sales_header_values) AS avg_transaction_value 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?
+ LIMIT ? OFFSET ?]
+[parameters: (2, 'user', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:41:27,640 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:31,685 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:31,691 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:41:38,572 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:01,484 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:01,489 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS total_sales, count(*) AS total_transactions, sum(pos_transactions.quantity) AS total_items, avg(pos_transactions.net_sales_header_values) AS avg_transaction_value 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?
+ LIMIT ? OFFSET ?]
+[parameters: (2, 'user', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:42:03,400 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:09,727 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:09,751 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:13,641 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:13,650 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS total_sales, count(*) AS total_transactions, sum(pos_transactions.quantity) AS total_items, avg(pos_transactions.net_sales_header_values) AS avg_transaction_value 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?
+ LIMIT ? OFFSET ?]
+[parameters: (2, 'user', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:42:14,168 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:42:14,171 - src.main - ERROR - Error fetching analytics: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT sum(pos_transactions.net_sales_header_values) AS total_sales, count(*) AS total_transactions, sum(pos_transactions.quantity) AS total_items, avg(pos_transactions.net_sales_header_values) AS avg_transaction_value 
+FROM pos_transactions, users 
+WHERE pos_transactions.user_id = ? OR users.role = ?
+ LIMIT ? OFFSET ?]
+[parameters: (2, 'user', 1, 0)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:43:01,162 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:43:01,163 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:43:01,757 - src.main - INFO - Application startup completed
+2024-12-21 14:43:01,758 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:43:14,936 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:43:14,937 - passlib.handlers.bcrypt - WARNING - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Users\kes\anaconda3\lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2024-12-21 14:43:15,525 - src.main - INFO - Application startup completed
+2024-12-21 14:43:15,525 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:43:34,155 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:43:34,164 - src.main - INFO - Application startup completed
+2024-12-21 14:43:34,164 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:43:47,573 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:43:47,581 - src.main - INFO - Application startup completed
+2024-12-21 14:43:47,581 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:43:51,448 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:43:51,457 - src.main - INFO - Application startup completed
+2024-12-21 14:43:51,458 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:44:13,281 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:44:13,290 - src.main - INFO - Application startup completed
+2024-12-21 14:44:13,290 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:44:17,197 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:44:17,206 - src.main - INFO - Application startup completed
+2024-12-21 14:44:17,207 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:44:26,376 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:44:26,386 - src.main - INFO - Application startup completed
+2024-12-21 14:44:26,386 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:45:11,138 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:45:11,147 - src.main - INFO - Application startup completed
+2024-12-21 14:45:11,148 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:45:17,842 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:45:17,850 - src.main - INFO - Application startup completed
+2024-12-21 14:45:17,850 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:45:46,174 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:45:46,175 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:45:46,176 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:45:46,176 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:45:46,177 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,993 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,993 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,994 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,994 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,994 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:22,995 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,911 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,912 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,913 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,922 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,923 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:46:35,924 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:47:15,308 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:47:15,308 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:47:15,309 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.created_at AS users_created_at, users.last_login AS users_last_login, users.is_active AS users_is_active 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,752 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,753 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,754 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,767 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,768 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:18,768 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:19,033 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:19,034 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:19,036 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,834 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,834 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,835 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,835 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,835 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,835 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,836 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,836 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:30,837 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,781 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,782 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,782 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,794 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,794 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,795 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,795 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,795 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:49:39,795 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,744 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,745 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,745 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,745 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+3q8)
+2024-12-21 14:50:00,746 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,756 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,757 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:00,757 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,042 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,042 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,042 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,043 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,044 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,044 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,044 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,045 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:12,045 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,730 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,731 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,732 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,732 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,733 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,735 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,735 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,736 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:20,736 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:21,131 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:21,132 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:21,132 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:37,371 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:37,371 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:50:37,372 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:22,740 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:22,741 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:22,743 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:23,942 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:23,944 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:23,945 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:39,827 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:39,827 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:51:39,828 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:04,453 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:04,454 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:04,455 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:06,941 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:06,943 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:06,943 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:13,181 - src.db.init_db - ERROR - Error initializing test users: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:13,183 - src.db.init_db - ERROR - Error testing database connection: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:52:13,183 - src.db.init_db - ERROR - Error initializing database: (sqlite3.OperationalError) no such table: users
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT users.id AS users_id, users.username AS users_username, users.password_hash AS users_password_hash, users.role AS users_role, users.last_login AS users_last_login, users.created_at AS users_created_at 
+FROM users) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 14:56:38,028 - src.db.init_db - INFO - Test users initialized successfully
+2024-12-21 14:56:38,028 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:56:38,038 - src.main - INFO - Application startup completed
+2024-12-21 14:56:38,038 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:56:44,333 - src.db.init_db - INFO - Test users initialized successfully
+2024-12-21 14:56:44,333 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:56:44,343 - src.main - INFO - Application startup completed
+2024-12-21 14:56:44,343 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}
+2024-12-21 14:56:48,457 - src.db.init_db - INFO - Test users initialized successfully
+2024-12-21 14:56:48,457 - src.db.init_db - INFO - Database initialized successfully
+2024-12-21 14:56:48,468 - src.main - INFO - Application startup completed
+2024-12-21 14:56:48,469 - src.main - INFO - Periodic sync completed: {'status': 'success', 'records_synced': 0, 'message': 'Successfully synced 0 records'}

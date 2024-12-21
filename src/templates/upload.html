@@ -20,7 +20,9 @@ content %}
               accept=".csv"
               required
             />
-            <div class="form-text">Maximum file size: 10MB</div>
+            <div class="form-text">
+              Maximum file size: {{ settings.max_file_size // 1048576 }}MB
+            </div>
           </div>
 
           <div class="progress mb-3 d-none" id="uploadProgress">
@@ -31,9 +33,14 @@ content %}
             ></div>
           </div>
 
-          <button type="submit" class="btn btn-primary" id="uploadButton">
-            <i class="bx bx-upload"></i> Upload File
-          </button>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" id="uploadButton">
+              <i class="fas fa-upload"></i> Upload File
+            </button>
+            <button type="button" class="btn btn-danger" id="clearDataButton">
+              <i class="fas fa-trash"></i> Clear Data
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -46,10 +53,9 @@ content %}
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Date</th>
-                <th>File</th>
+                <th>Upload Date</th>
                 <th>Records</th>
-                <th>Status</th>
+                <th>Total Sales</th>
               </tr>
             </thead>
             <tbody id="uploadHistory">
@@ -70,35 +76,31 @@ content %}
           <h6>File Requirements</h6>
           <ul>
             <li>File must be in CSV format</li>
-            <li>Maximum file size: 10MB</li>
+            <li>
+              Maximum file size: {{ settings.max_file_size // 1048576 }}MB
+            </li>
             <li>
               Required columns:
               <ul>
-                <li>STORE_CODE</li>
-                <li>STORE_DISPLAY_NAME</li>
-                <li>TRANS_DATE</li>
-                <li>TRANS_TIME</li>
-                <li>TRANS_NO</li>
-                <li>TILL_NO</li>
-                <li>NET_SALES_HEADER_VALUES</li>
-                <li>ID_KEY</li>
+                <li>store_code</li>
+                <li>store_display_name</li>
+                <li>trans_date (YYYY-MM-DD)</li>
+                <li>trans_time (HH:MM:SS)</li>
+                <li>trans_no</li>
+                <li>till_no</li>
+                <li>net_sales_header_values (numeric)</li>
+                <li>quantity (numeric)</li>
               </ul>
             </li>
-          </ul>
-
-          <h6>Data Format</h6>
-          <ul>
-            <li>TRANS_DATE: YYYY-MM-DD format</li>
-            <li>TRANS_TIME: HH:MM:SS format</li>
-            <li>NET_SALES_HEADER_VALUES: Numeric values</li>
-            <li>ID_KEY: Unique identifier for each transaction</li>
-          </ul>
-
-          <h6>Processing</h6>
-          <ul>
-            <li>Files are processed asynchronously</li>
-            <li>Progress can be monitored in real-time</li>
-            <li>Failed records will be logged for review</li>
+            <li>
+              Optional columns:
+              <ul>
+                <li>discount_header (numeric)</li>
+                <li>tax_header (numeric)</li>
+                <li>trans_type (default: SALE)</li>
+                <li>tender (default: CASH)</li>
+              </ul>
+            </li>
           </ul>
         </div>
       </div>
@@ -123,11 +125,41 @@ content %}
             <div class="col-6">
               <div class="p-3 border rounded">
                 <div class="small text-muted">Success Rate</div>
-                <div class="h4 mb-0" id="successRate">0%</div>
+                <div class="h4 mb-0" id="successRate">100%</div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmClearModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Clear Data</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure you want to clear all transaction data? This action
+          cannot be undone.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" id="confirmClearButton">
+          Clear Data
+        </button>
       </div>
     </div>
   </div>
@@ -140,6 +172,14 @@ content %}
     const uploadStatus = document.getElementById("uploadStatus");
     const processedRecords = document.getElementById("processedRecords");
     const successRate = document.getElementById("successRate");
+    const clearDataButton = document.getElementById("clearDataButton");
+    const confirmClearButton = document.getElementById("confirmClearButton");
+    const confirmClearModal = new bootstrap.Modal(
+      document.getElementById("confirmClearModal")
+    );
+
+    // Load upload history on page load
+    loadUploadHistory();
 
     uploadForm.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -171,7 +211,8 @@ content %}
 
         if (response.ok) {
           showAlert("File uploaded successfully", "success");
-          updateUploadStats(result.details);
+          processedRecords.textContent = result.records_processed;
+          await loadUploadHistory(); // Reload history after successful upload
         } else {
           showAlert(result.message || "Upload failed", "danger");
         }
@@ -184,31 +225,58 @@ content %}
       }
     });
 
+    clearDataButton.addEventListener("click", function () {
+      confirmClearModal.show();
+    });
+
+    confirmClearButton.addEventListener("click", async function () {
+      try {
+        const response = await fetch("/api/data/clear", {
+          method: "POST",
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          showAlert("Data cleared successfully", "success");
+          processedRecords.textContent = "0";
+          await loadUploadHistory(); // Reload history after clearing data
+        } else {
+          showAlert(result.message || "Failed to clear data", "danger");
+        }
+      } catch (error) {
+        showAlert("Error clearing data", "danger");
+        console.error("Clear data error:", error);
+      } finally {
+        confirmClearModal.hide();
+      }
+    });
+
+    async function loadUploadHistory() {
+      try {
+        const response = await fetch("/api/uploads/history");
+        const data = await response.json();
+
+        const historyTable = document.getElementById("uploadHistory");
+        historyTable.innerHTML = ""; // Clear existing history
+
+        data.history.forEach((entry) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                    <td>${new Date(entry.upload_date).toLocaleString()}</td>
+                    <td>${entry.record_count}</td>
+                    <td>${entry.total_sales.toFixed(2)}</td>
+                `;
+          historyTable.appendChild(row);
+        });
+      } catch (error) {
+        console.error("Error loading upload history:", error);
+      }
+    }
+
     function showAlert(message, type) {
       uploadStatus.className = `alert alert-${type}`;
       uploadStatus.textContent = message;
-    }
-
-    function updateUploadStats(details) {
-      processedRecords.textContent = details.records_transformed;
-      const rate = (
-        (details.records_synced_sqlite / details.records_transformed) *
-        100
-      ).toFixed(1);
-      successRate.textContent = `${rate}%`;
-
-      // Update upload history
-      const historyRow = `
-            <tr>
-                <td>${new Date().toLocaleString()}</td>
-                <td>${details.file}</td>
-                <td>${details.records_transformed}</td>
-                <td><span class="badge bg-success">Completed</span></td>
-            </tr>
-        `;
-      document
-        .getElementById("uploadHistory")
-        .insertAdjacentHTML("afterbegin", historyRow);
     }
   });
 </script>

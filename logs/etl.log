@@ -4441,3 +4441,181 @@
 2024-12-21 13:46:34,971 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
 2024-12-21 13:47:01,815 - db.database - INFO - Disconnected from MongoDB
 2024-12-21 13:47:01,816 - src.main - INFO - Application shutdown completed
+2024-12-21 13:47:08,473 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:47:08,474 - src.main - INFO - Application startup completed
+2024-12-21 13:47:08,503 - src.db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:47:08,505 - src.services.data_sync_service - INFO - No unprocessed transactions found
+2024-12-21 13:47:08,506 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
+2024-12-21 13:48:08,509 - src.services.data_sync_service - INFO - No unprocessed transactions found
+2024-12-21 13:48:08,510 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
+2024-12-21 13:48:34,726 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:48:34,727 - src.main - INFO - Application shutdown completed
+2024-12-21 13:48:36,522 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:48:36,523 - src.main - INFO - Application startup completed
+2024-12-21 13:48:36,551 - src.db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:48:36,552 - src.services.data_sync_service - INFO - No unprocessed transactions found
+2024-12-21 13:48:36,553 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
+2024-12-21 13:48:47,886 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:48:47,887 - src.main - INFO - Application shutdown completed
+2024-12-21 13:48:49,709 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:48:49,709 - src.main - INFO - Application startup completed
+2024-12-21 13:48:49,739 - src.db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:48:49,741 - src.services.data_sync_service - INFO - No unprocessed transactions found
+2024-12-21 13:48:49,741 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
+2024-12-21 13:49:03,043 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:49:03,043 - src.main - INFO - Application shutdown completed
+2024-12-21 13:49:04,979 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:49:04,979 - src.main - INFO - Application startup completed
+2024-12-21 13:49:04,993 - src.db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:49:04,994 - src.services.data_sync_service - INFO - No unprocessed transactions found
+2024-12-21 13:49:04,995 - src.main - INFO - Periodic sync completed: {'synced': 0, 'errors': 0}
+2024-12-21 13:49:59,907 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:49:59,908 - src.main - INFO - Application shutdown completed
+2024-12-21 13:50:02,213 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:50:02,213 - src.main - INFO - Application startup completed
+2024-12-21 13:50:02,214 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:50:02,214 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:51:03,367 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:51:03,368 - src.main - INFO - Application shutdown completed
+2024-12-21 13:51:05,797 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:51:05,797 - src.main - INFO - Application startup completed
+2024-12-21 13:51:05,798 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:51:05,798 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:52:14,665 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:52:14,666 - src.main - INFO - Application shutdown completed
+2024-12-21 13:52:17,138 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:52:17,138 - src.main - INFO - Application startup completed
+2024-12-21 13:52:17,139 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:52:17,139 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:53:01,281 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:53:01,282 - src.main - INFO - Application shutdown completed
+2024-12-21 13:53:05,517 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:53:05,517 - src.main - INFO - Application startup completed
+2024-12-21 13:53:05,517 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:53:05,518 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:53:27,055 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:53:27,055 - src.main - INFO - Application shutdown completed
+2024-12-21 13:53:29,534 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:53:29,535 - src.main - INFO - Application startup completed
+2024-12-21 13:53:29,536 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:53:29,536 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:53:35,331 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:53:35,332 - src.main - INFO - Application shutdown completed
+2024-12-21 13:53:37,781 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:53:37,782 - src.main - INFO - Application startup completed
+2024-12-21 13:53:37,783 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:53:37,783 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:53:45,446 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:51,632 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:52,642 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:53,021 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:53,192 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:53,364 - src.main - ERROR - Error getting analytics: (sqlite3.OperationalError) no such column: pos_transactions.user_id
+[SQL: SELECT count(*) AS count_1 
+FROM (SELECT pos_transactions.id AS pos_transactions_id, pos_transactions.user_id AS pos_transactions_user_id, pos_transactions.store_code AS pos_transactions_store_code, pos_transactions.store_display_name AS pos_transactions_store_display_name, pos_transactions.trans_date AS pos_transactions_trans_date, pos_transactions.trans_time AS pos_transactions_trans_time, pos_transactions.trans_no AS pos_transactions_trans_no, pos_transactions.till_no AS pos_transactions_till_no, pos_transactions.discount_header AS pos_transactions_discount_header, pos_transactions.tax_header AS pos_transactions_tax_header, pos_transactions.net_sales_header_values AS pos_transactions_net_sales_header_values, pos_transactions.quantity AS pos_transactions_quantity, pos_transactions.trans_type AS pos_transactions_trans_type, pos_transactions.tender AS pos_transactions_tender, pos_transactions.dm_load_date AS pos_transactions_dm_load_date, pos_transactions.dm_load_delta_id AS pos_transactions_dm_load_delta_id 
+FROM pos_transactions) AS anon_1]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-12-21 13:53:58,621 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:00,504 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:00,658 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:07,600 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:08,908 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:13,213 - src.main - ERROR - Error handling upload: 'function' object has no attribute 'max_file_size'
+2024-12-21 13:54:14,956 - src.main - ERROR - Error getting analytics: name 'db' is not defined
+2024-12-21 13:54:22,642 - src.main - ERROR - Error handling upload: 'function' object has no attribute 'max_file_size'
+2024-12-21 13:54:59,565 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:54:59,566 - src.main - INFO - Application shutdown completed
+2024-12-21 13:56:53,671 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:56:53,671 - src.main - INFO - Application startup completed
+2024-12-21 13:56:53,672 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:56:53,672 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:57:18,020 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:57:18,021 - src.main - INFO - Application shutdown completed
+2024-12-21 13:57:20,326 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:57:20,326 - src.main - INFO - Application startup completed
+2024-12-21 13:57:20,327 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:57:20,327 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:57:24,365 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:57:24,365 - src.main - INFO - Application shutdown completed
+2024-12-21 13:57:26,500 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:57:26,500 - src.main - INFO - Application startup completed
+2024-12-21 13:57:26,501 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:57:26,502 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:57:32,171 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:57:32,172 - src.main - INFO - Application shutdown completed
+2024-12-21 13:57:49,340 - db.database - INFO - Successfully connected to MongoDB
+2024-12-21 13:57:49,340 - src.main - INFO - Application startup completed
+2024-12-21 13:57:49,340 - src.main - ERROR - Error in periodic sync: 'function' object has no attribute 'batch_size'
+2024-12-21 13:57:49,341 - asyncio - ERROR - Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<sync_data_periodically() done, defined at D:\Ashley\hackathon\src\main.py:106> exception=AttributeError("'function' object has no attribute 'sync_interval'")>
+Traceback (most recent call last):
+  File "D:\Ashley\hackathon\src\main.py", line 119, in sync_data_periodically
+    await asyncio.sleep(settings.sync_interval)
+AttributeError: 'function' object has no attribute 'sync_interval'
+2024-12-21 13:58:26,830 - db.database - INFO - Disconnected from MongoDB
+2024-12-21 13:58:26,831 - src.main - INFO - Application shutdown completed

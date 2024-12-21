@@ -1,3 +1,3 @@
 """
-Database models for the ETL process
+Database models for the application
 """ 

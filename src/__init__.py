@@ -1,3 +1,5 @@
 """
-ETL package for processing POS transactions
-""" 
+POS ETL Application
+"""
+
+__version__ = "1.0.0" 

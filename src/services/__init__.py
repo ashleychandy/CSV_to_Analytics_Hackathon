@@ -1,3 +1,3 @@
 """
-Service layer for ETL operations
+Service layer for business logic
 """ 

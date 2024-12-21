@@ -1,0 +1,167 @@
+{% extends "base.html" %} {% block title %}Settings{% endblock %} {% block
+content %}
+<div class="container mt-4">
+  <h2>Settings</h2>
+
+  <!-- Password Update Form -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h4>Change Password</h4>
+    </div>
+    <div class="card-body">
+      <form id="passwordForm" action="/api/settings/password" method="POST">
+        <div class="mb-3">
+          <label for="currentPassword" class="form-label"
+            >Current Password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="currentPassword"
+            name="current_password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="newPassword" class="form-label">New Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="newPassword"
+            name="new_password"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm New Password</label
+          >
+          <input
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+            name="confirm_password"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Update Password</button>
+      </form>
+    </div>
+  </div>
+
+  {% if user.role == 'admin' %}
+  <!-- System Settings Form (Admin Only) -->
+  <div class="card">
+    <div class="card-header">
+      <h4>System Settings</h4>
+    </div>
+    <div class="card-body">
+      <form id="systemSettingsForm" action="/api/settings/system" method="POST">
+        <div class="mb-3">
+          <label for="batchSize" class="form-label">Batch Size</label>
+          <input
+            type="number"
+            class="form-control"
+            id="batchSize"
+            name="batch_size"
+            min="1"
+            max="10000"
+            value="{{ settings.batch_size }}"
+            required
+          />
+          <small class="text-muted"
+            >Number of records to process in each batch (1-10000)</small
+          >
+        </div>
+        <div class="mb-3">
+          <label for="syncInterval" class="form-label"
+            >Sync Interval (seconds)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="syncInterval"
+            name="sync_interval"
+            min="60"
+            max="3600"
+            value="{{ settings.sync_interval }}"
+            required
+          />
+          <small class="text-muted"
+            >Time between automatic syncs (60-3600 seconds)</small
+          >
+        </div>
+        <div class="mb-3">
+          <label for="maxFileSize" class="form-label"
+            >Max File Size (bytes)</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            id="maxFileSize"
+            name="max_file_size"
+            min="1048576"
+            max="104857600"
+            value="{{ settings.max_file_size }}"
+            required
+          />
+          <small class="text-muted"
+            >Maximum allowed file size for uploads (1MB-100MB)</small
+          >
+        </div>
+        <button type="submit" class="btn btn-primary">
+          Update System Settings
+        </button>
+      </form>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<script>
+  document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      try {
+          const response = await fetch('/api/settings/password', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams(new FormData(this))
+          });
+          const data = await response.json();
+          if (response.ok) {
+              alert('Password updated successfully');
+              this.reset();
+          } else {
+              alert(data.detail || 'Error updating password');
+          }
+      } catch (error) {
+          alert('Error: ' + error.message);
+      }
+  });
+
+  {% if user.role == 'admin' %}
+  document.getElementById('systemSettingsForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      try {
+          const response = await fetch('/api/settings/system', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+              },
+              body: new URLSearchParams(new FormData(this))
+          });
+          const data = await response.json();
+          if (response.ok) {
+              alert('System settings updated successfully');
+          } else {
+              alert(data.detail || 'Error updating system settings');
+          }
+      } catch (error) {
+          alert('Error: ' + error.message);
+      }
+  });
+  {% endif %}
+</script>
+{% endblock %}
