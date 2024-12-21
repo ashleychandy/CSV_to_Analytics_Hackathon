@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS ETL Dashboard - {% block title %}{% endblock %}</title>
+    <title>DataSynth - {% block title %}{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet">
     <link href="{{ url_for('static', path='/css/style.css') }}" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #f8f9fa;
+            --dark-blue: #070F2B;
+            --navy-blue: #1B1A55;
+            --medium-blue: #535C91;
+            --light-blue: #9290C3;
             --sidebar-width: 250px;
             --sidebar-collapsed-width: 70px;
             --header-height: 60px;
@@ -21,13 +23,13 @@
         .wrapper {
             display: flex;
             min-height: 100vh;
-            background-color: var(--secondary-color);
+            background-color: #f8f9fa;
         }
 
         /* Sidebar */
         #sidebar {
             width: var(--sidebar-width);
-            background: #343a40;
+            background: var(--dark-blue);
             color: #fff;
             transition: all 0.3s;
             z-index: 1000;
@@ -43,7 +45,7 @@
 
         #sidebar .sidebar-header {
             padding: 1.25rem 1rem;
-            background: #2c3136;
+            background: var(--navy-blue);
             text-align: center;
         }
 
@@ -74,11 +76,11 @@
         }
 
         #sidebar ul li a:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: var(--medium-blue);
         }
 
         #sidebar ul li.active a {
-            background: var(--primary-color);
+            background: var(--medium-blue);
             font-weight: 500;
         }
 
@@ -97,8 +99,8 @@
             padding: 1rem;
             text-align: center;
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-blue);
+            border-top: 1px solid var(--medium-blue);
         }
 
         /* Content */
@@ -134,7 +136,7 @@
         }
 
         .search-bar .input-group {
-            background: var(--secondary-color);
+            background: var(--light-blue);
             border-radius: 0.5rem;
             overflow: hidden;
         }
@@ -149,22 +151,6 @@
             box-shadow: none;
         }
 
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: var(--secondary-color);
-            border-radius: 0.5rem;
-            margin-right: 1rem;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
         /* Main Content Area */
         .main-content {
             flex-grow: 1;
@@ -175,21 +161,22 @@
         .content-wrapper {
             background: #fff;
             border-radius: 0.75rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(7, 15, 43, 0.08);
             padding: var(--content-padding);
         }
 
         /* Cards */
         .card {
-            border: none;
+            border: 1px solid var(--light-blue);
             border-radius: 0.75rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(7, 15, 43, 0.08);
             transition: transform 0.2s;
             height: 100%;
         }
 
         .card:hover {
             transform: translateY(-2px);
+            border-color: var(--medium-blue);
         }
 
         .card-body {
@@ -203,21 +190,21 @@
         }
 
         .breadcrumb-item a {
-            color: var(--primary-color);
+            color: var(--navy-blue);
             text-decoration: none;
         }
 
         .breadcrumb-item.active {
-            color: #6c757d;
+            color: var(--medium-blue);
         }
 
         /* User Menu */
         .user-menu .dropdown-toggle {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
-            background: var(--secondary-color);
+            background: var(--light-blue);
             text-decoration: none;
-            color: #212529;
+            color: var(--dark-blue);
         }
 
         .user-menu .dropdown-toggle:after {
@@ -227,7 +214,7 @@
         .user-menu .dropdown-menu {
             margin-top: 0.5rem;
             border: none;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(7, 15, 43, 0.1);
             border-radius: 0.5rem;
         }
 
@@ -283,7 +270,7 @@
         }
 
         .search-bar .input-group {
-            background: var(--secondary-color);
+            background: var(--light-blue);
             border-radius: 0.5rem;
             overflow: hidden;
         }
@@ -300,6 +287,8 @@
 
         /* Upload Button */
         .btn-primary {
+            background-color: var(--navy-blue) !important;
+            border-color: var(--navy-blue) !important;
             padding: 0.5rem 1rem;
             font-weight: 500;
             border-radius: 0.5rem;
@@ -307,8 +296,10 @@
         }
 
         .btn-primary:hover {
+            background-color: var(--dark-blue) !important;
+            border-color: var(--dark-blue) !important;
             transform: translateY(-1px);
-            box-shadow: 0 2px 4px rgba(13, 110, 253, 0.2);
+            box-shadow: 0 2px 4px rgba(27, 26, 85, 0.2);
         }
 
         .btn-primary i {
@@ -320,8 +311,6 @@
                 margin-right: 0 !important;
             }
         }
-
-        /* Status Indicator */
     </style>
     {% block styles %}{% endblock %}
 </head>
@@ -330,8 +319,8 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>POS ETL</h3>
-                <p class="text-light mb-0">Data Management</p>
+                <h3>DataSynth</h3>
+                <p class="text-light mb-0">POS Analytics</p>
             </div>
 
             <ul class="list-unstyled components">
@@ -359,12 +348,6 @@
                         <span>Analytics</span>
                     </a>
                 </li>
-                <li {% if active_page == 'settings' %}class="active"{% endif %}>
-                    <a href="/settings" title="Settings">
-                        <i class='bx bx-cog'></i>
-                        <span>Settings</span>
-                    </a>
-                </li>
             </ul>
 
             <div class="sidebar-footer">
@@ -381,46 +364,18 @@
                         <button type="button" id="sidebarCollapse" class="btn btn-primary me-3" title="Toggle Sidebar">
                             <i class='bx bx-menu'></i>
                         </button>
-
-                        <!-- Search Bar -->
-                        <div class="search-bar">
-                            <div class="input-group">
-                                <span class="input-group-text bg-transparent border-end-0">
-                                    <i class='bx bx-search'></i>
-                                </span>
-                                <input type="text" class="form-control border-start-0" placeholder="Search...">
-                            </div>
-                        </div>
-
-                        {% if user.role in ['admin', 'manager'] %}
-                        <!-- Upload Button -->
-                        <a href="/upload" class="btn btn-primary d-flex align-items-center">
-                            <i class='bx bx-upload me-2'></i>
-                            <span class="d-none d-md-inline">Upload Data</span>
-                        </a>
-                        {% endif %}
                     </div>
 
                     <div class="d-flex align-items-center">
-                        <!-- Status Indicator -->
-                        <div class="status-indicator">
-                            <span class="status-dot {% if status == 'Running' %}bg-success{% else %}bg-warning{% endif %}"></span>
-                            <span class="status-text">{{ status|default('Idle') }}</span>
-                        </div>
-
                         <!-- User Menu -->
                         <div class="dropdown user-menu">
                             <button class="btn dropdown-toggle d-flex align-items-center" type="button" 
                                     id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class='bx bx-user-circle fs-5 me-2'></i>
                                 <span class="d-none d-md-inline">{{ user.username }}</span>
-                                <span class="badge bg-primary ms-2 text-uppercase">{{ user.role }}</span>
+                                <span class="badge bg-primary ms-2 text-uppercase">{{ user.role.replace('user3', 'user') }}</span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                                {% if user.role == 'admin' %}
-                                <li><a class="dropdown-item" href="/settings"><i class='bx bx-cog'></i>Settings</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                {% endif %}
                                 <li><a class="dropdown-item text-danger" href="/logout"><i class='bx bx-log-out'></i>Logout</a></li>
                             </ul>
                         </div>

@@ -1,114 +1,214 @@
 {% extends "base.html" %} {% block title %}Transactions{% endblock %} {% block
-content %}
-<div class="row">
-  <div class="col-12">
-    <!-- Filters Card -->
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Filters</h5>
-        <form id="filterForm" class="row g-3">
-          <div class="col-md-3">
-            <label class="form-label">Date Range</label>
-            <div class="input-group">
-              <input type="date" class="form-control" id="startDate" />
-              <span class="input-group-text">to</span>
-              <input type="date" class="form-control" id="endDate" />
-            </div>
-          </div>
-          <div class="col-md-2">
-            <label for="storeFilter" class="form-label">Store</label>
-            <select class="form-select" id="storeFilter">
-              <option value="">All Stores</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label for="tenderFilter" class="form-label">Payment Method</label>
-            <select class="form-select" id="tenderFilter">
-              <option value="">All Methods</option>
-            </select>
-          </div>
-          <div class="col-md-2">
-            <label for="amountFilter" class="form-label">Amount Range</label>
-            <select class="form-select" id="amountFilter">
-              <option value="">All Amounts</option>
-              <option value="0-50">$0 - $50</option>
-              <option value="51-100">$51 - $100</option>
-              <option value="101-500">$101 - $500</option>
-              <option value="501+">$501+</option>
-            </select>
-          </div>
-          <div class="col-md-3 d-flex align-items-end">
-            <button type="submit" class="btn btn-primary me-2">
-              <i class="bx bx-filter-alt"></i> Apply Filters
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              onclick="resetFilters()"
-            >
-              <i class="bx bx-reset"></i> Reset
-            </button>
-          </div>
-        </form>
+styles %}
+<style>
+  :root {
+    --dark-blue: #070f2b;
+    --navy-blue: #1b1a55;
+    --medium-blue: #535c91;
+    --light-blue: #9290c3;
+  }
+
+  .filter-card {
+    border-color: var(--light-blue);
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-card .card-header {
+    background-color: var(--navy-blue);
+    color: white;
+    border-bottom: none;
+  }
+
+  .filter-card .form-control,
+  .filter-card .form-select {
+    border-color: var(--light-blue);
+  }
+
+  .filter-card .form-control:focus,
+  .filter-card .form-select:focus {
+    border-color: var(--medium-blue);
+    box-shadow: 0 0 0 0.2rem rgba(83, 92, 145, 0.25);
+  }
+
+  .table thead th {
+    background-color: var(--navy-blue);
+    color: white;
+    border-bottom: none;
+  }
+
+  .table tbody tr:hover {
+    background-color: rgba(146, 144, 195, 0.1);
+  }
+
+  .table td {
+    vertical-align: middle;
+  }
+
+  .badge {
+    padding: 0.5em 0.75em;
+  }
+
+  .badge-success {
+    background-color: var(--medium-blue) !important;
+    color: white;
+  }
+
+  .pagination .page-link {
+    color: var(--navy-blue);
+    border-color: var(--light-blue);
+  }
+
+  .pagination .page-link:hover {
+    background-color: var(--light-blue);
+    border-color: var(--medium-blue);
+    color: var(--dark-blue);
+  }
+
+  .pagination .page-item.active .page-link {
+    background-color: var(--navy-blue);
+    border-color: var(--navy-blue);
+    color: white;
+  }
+
+  .btn-outline-secondary {
+    color: var(--navy-blue);
+    border-color: var(--light-blue);
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: var(--light-blue);
+    border-color: var(--medium-blue);
+    color: var(--dark-blue);
+  }
+
+  .input-group-text {
+    background-color: var(--light-blue);
+    border-color: var(--light-blue);
+    color: var(--dark-blue);
+  }
+</style>
+{% endblock %} {% block content %}
+<div class="container-fluid px-0">
+  <!-- Filters Section -->
+  <div class="card filter-card">
+    <div class="card-body p-3">
+      <div class="d-flex align-items-center mb-2">
+        <h6 class="card-title mb-0">
+          <i class="bx bx-filter-alt me-1"></i>Filters
+        </h6>
+        <button
+          type="button"
+          class="btn btn-link btn-sm ms-auto p-0"
+          onclick="resetFilters()"
+        >
+          <i class="bx bx-reset me-1"></i>Reset
+        </button>
       </div>
+      <form id="filterForm" class="row g-2">
+        <div class="col-lg-4 col-md-6">
+          <div class="input-group input-group-sm">
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="startDate"
+              placeholder="Start Date"
+            />
+            <span class="input-group-text">to</span>
+            <input
+              type="date"
+              class="form-control form-control-sm"
+              id="endDate"
+              placeholder="End Date"
+            />
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <select class="form-select form-select-sm" id="storeFilter">
+            <option value="">All Stores</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <select class="form-select form-select-sm" id="tenderFilter">
+            <option value="">All Methods</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <select class="form-select form-select-sm" id="amountFilter">
+            <option value="">All Amounts</option>
+            <option value="0-50">$0 - $50</option>
+            <option value="51-100">$51 - $100</option>
+            <option value="101-500">$101 - $500</option>
+            <option value="501+">$501+</option>
+          </select>
+        </div>
+        <div class="col-lg-2 col-md-12">
+          <button type="submit" class="btn btn-primary btn-sm w-100">
+            Apply
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- Transactions Table Card -->
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h5 class="card-title">Transaction List</h5>
-          <div class="btn-group">
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              onclick="exportCSV()"
-            >
-              <i class="bx bx-download"></i> Export CSV
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
-              onclick="printTransactions()"
-            >
-              <i class="bx bx-printer"></i> Print
-            </button>
-          </div>
+  <!-- Transactions Table Section -->
+  <div class="card">
+    <div class="card-body p-0">
+      <div
+        class="d-flex justify-content-between align-items-center p-3 border-bottom"
+      >
+        <h5 class="card-title mb-0">Transaction List</h5>
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            onclick="exportCSV()"
+          >
+            <i class="bx bx-download me-1"></i> Export CSV
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            onclick="printTransactions()"
+          >
+            <i class="bx bx-printer me-1"></i> Print
+          </button>
         </div>
+      </div>
 
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Date & Time</th>
-                <th>Store</th>
-                <th>Transaction #</th>
-                <th>Till #</th>
-                <th>Amount</th>
-                <th>Payment Method</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="transactionsTable">
-              <!-- Transactions will be loaded here -->
-            </tbody>
-          </table>
-        </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Date & Time</th>
+              <th>Store</th>
+              <th>Transaction #</th>
+              <th>Till #</th>
+              <th class="text-end">Amount</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="transactionsTable">
+            <!-- Transactions will be loaded here -->
+          </tbody>
+        </table>
+      </div>
 
-        <!-- Pagination -->
-        <div class="d-flex justify-content-between align-items-center mt-4">
-          <div class="text-muted" id="pageInfo">
-            Showing <span id="startRecord">0</span> to
-            <span id="endRecord">0</span> of
-            <span id="totalRecords">0</span> entries
-          </div>
-          <nav aria-label="Page navigation">
-            <ul class="pagination mb-0" id="pagination">
-              <!-- Pagination will be generated here -->
-            </ul>
-          </nav>
+      <!-- Pagination -->
+      <div
+        class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 gap-3"
+      >
+        <div class="text-muted order-2 order-md-1">
+          Showing <span id="startRecord">0</span> to
+          <span id="endRecord">0</span> of
+          <span id="totalRecords">0</span> entries
         </div>
+        <nav aria-label="Page navigation" class="order-1 order-md-2">
+          <ul class="pagination mb-0" id="pagination">
+            <!-- Pagination will be generated here -->
+          </ul>
+        </nav>
       </div>
     </div>
   </div>
@@ -127,48 +227,56 @@ content %}
         ></button>
       </div>
       <div class="modal-body">
-        <div class="row">
+        <div class="row g-4">
           <div class="col-md-6">
-            <h6>Transaction Information</h6>
-            <table class="table table-sm">
-              <tr>
-                <th>Transaction #:</th>
-                <td id="modalTransNo"></td>
-              </tr>
-              <tr>
-                <th>Date & Time:</th>
-                <td id="modalDateTime"></td>
-              </tr>
-              <tr>
-                <th>Store:</th>
-                <td id="modalStore"></td>
-              </tr>
-              <tr>
-                <th>Till #:</th>
-                <td id="modalTill"></td>
-              </tr>
-            </table>
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-3">Transaction Information</h6>
+                <table class="table table-sm">
+                  <tr>
+                    <th>Transaction #:</th>
+                    <td id="modalTransNo"></td>
+                  </tr>
+                  <tr>
+                    <th>Date & Time:</th>
+                    <td id="modalDateTime"></td>
+                  </tr>
+                  <tr>
+                    <th>Store:</th>
+                    <td id="modalStore"></td>
+                  </tr>
+                  <tr>
+                    <th>Till #:</th>
+                    <td id="modalTill"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
           <div class="col-md-6">
-            <h6>Financial Details</h6>
-            <table class="table table-sm">
-              <tr>
-                <th>Net Sales:</th>
-                <td id="modalNetSales"></td>
-              </tr>
-              <tr>
-                <th>Payment Method:</th>
-                <td id="modalTender"></td>
-              </tr>
-              <tr>
-                <th>Discount:</th>
-                <td id="modalDiscount"></td>
-              </tr>
-              <tr>
-                <th>Tax:</th>
-                <td id="modalTax"></td>
-              </tr>
-            </table>
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-3">Financial Details</h6>
+                <table class="table table-sm">
+                  <tr>
+                    <th>Net Sales:</th>
+                    <td id="modalNetSales"></td>
+                  </tr>
+                  <tr>
+                    <th>Payment Method:</th>
+                    <td id="modalTender"></td>
+                  </tr>
+                  <tr>
+                    <th>Discount:</th>
+                    <td id="modalDiscount"></td>
+                  </tr>
+                  <tr>
+                    <th>Tax:</th>
+                    <td id="modalTax"></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -250,13 +358,16 @@ content %}
             <td>${t.store_display_name}</td>
             <td>${t.trans_no}</td>
             <td>${t.till_no}</td>
-            <td>$${t.net_sales_header_values.toLocaleString(undefined, {
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}</td>
+            <td class="text-end">$${t.net_sales_header_values.toLocaleString(
+              undefined,
+              {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              }
+            )}</td>
             <td>${t.tender || "Unknown"}</td>
             <td><span class="badge bg-success">Completed</span></td>
-            <td>
+            <td class="text-center">
                 <button class="btn btn-sm btn-outline-primary" onclick="viewTransaction(${JSON.stringify(
                   t
                 ).replace(/"/g, "&quot;")})">
@@ -383,48 +494,18 @@ content %}
     transactionModal.show();
   }
 
-  async function exportCSV() {
-    try {
-      const response = await fetch("/api/export");
-      const data = await response.json();
-
-      // Convert data to CSV
-      const csv = convertToCSV(data);
-
-      // Create download link
-      const blob = new Blob([csv], { type: "text/csv" });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.setAttribute("hidden", "");
-      a.setAttribute("href", url);
-      a.setAttribute("download", `transactions_${formatDate(new Date())}.csv`);
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-    } catch (error) {
-      console.error("Error exporting data:", error);
-      showAlert("Error exporting data", "danger");
-    }
-  }
-
-  function printTransactions() {
-    window.print();
-  }
-
-  // Utility functions
   function formatDateTime(date, time) {
-    return `${new Date(date).toLocaleDateString()} ${time}`;
-  }
-
-  function formatDate(date) {
-    return date.toISOString().split("T")[0];
+    return new Date(date).toLocaleDateString() + " " + time;
   }
 
   function formatCurrency(amount) {
-    return `$${Number(amount).toLocaleString(undefined, {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}`;
+    return (
+      "$" +
+      amount.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })
+    );
   }
 
   function convertToCSV(data) {
