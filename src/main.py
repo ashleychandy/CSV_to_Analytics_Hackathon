@@ -257,6 +257,11 @@ async def get_data(
     request: Request,
     page: int = 1,
     per_page: int = 10,
+    start_date: str = None,
+    end_date: str = None,
+    store: str = None,
+    tender: str = None,
+    amount_range: str = None,
     db: Session = Depends(get_db)
 ):
     """Get paginated transaction data."""
@@ -268,14 +273,43 @@ async def get_data(
         query = db.query(POSTransaction)
         query = get_user_data_filter(request.session["user"], query, db)
         
+        # Apply date range filter
+        if start_date:
+            query = query.filter(POSTransaction.trans_date >= datetime.strptime(start_date, "%Y-%m-%d"))
+        if end_date:
+            query = query.filter(POSTransaction.trans_date <= datetime.strptime(end_date, "%Y-%m-%d"))
+        
+        # Apply store filter
+        if store:
+            query = query.filter(POSTransaction.store_display_name == store)
+        
+        # Apply tender filter
+        if tender:
+            query = query.filter(POSTransaction.tender == tender)
+        
+        # Apply amount range filter
+        if amount_range:
+            if amount_range == "0-50":
+                query = query.filter(POSTransaction.net_sales_header_values.between(0, 50))
+            elif amount_range == "51-100":
+                query = query.filter(POSTransaction.net_sales_header_values.between(51, 100))
+            elif amount_range == "101-500":
+                query = query.filter(POSTransaction.net_sales_header_values.between(101, 500))
+            elif amount_range == "501+":
+                query = query.filter(POSTransaction.net_sales_header_values >= 501)
+        
         total = query.count()
-        transactions = query.offset((page - 1) * per_page).limit(per_page).all()
+        transactions = query.order_by(POSTransaction.trans_date.desc(), POSTransaction.trans_time.desc())\
+                          .offset((page - 1) * per_page)\
+                          .limit(per_page)\
+                          .all()
         
         return {
             "data": [t.__dict__ for t in transactions],
             "total": total,
             "page": page,
-            "per_page": per_page
+            "per_page": per_page,
+            "total_pages": (total + per_page - 1) // per_page
         }
     except Exception as e:
         logger.error(f"Error fetching data: {str(e)}")
