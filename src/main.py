@@ -103,55 +103,45 @@ async def upload_transactions(file: UploadFile = File(...)):
     """Upload transactions from CSV file"""
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed")
-        
+    
     try:
         monitor.update_status("Uploading transactions...")
         content = await file.read()
-        try:
-            lines = content.decode('utf-8').splitlines()
-        except UnicodeDecodeError:
-            lines = content.decode('latin-1').splitlines()
         
-        # Skip header if present
-        if lines and not lines[0].strip().startswith('BIAL') and not lines[0].strip().startswith('TFSB'):
-            lines = lines[1:]
+        # Try different encodings
+        for encoding in ['utf-8', 'latin-1', 'cp1252']:
+            try:
+                content_str = content.decode(encoding)
+                break
+            except UnicodeDecodeError:
+                continue
+        else:
+            raise HTTPException(status_code=400, detail="Unable to decode file content")
         
-        transactions = []
+        # Parse CSV content
         parser = POSDataParser()
-        errors = []
+        transactions, errors = parser.parse_csv_content(content_str)
         
-        for i, line in enumerate(lines, 1):
-            if line.strip():
-                try:
-                    parsed_data = parser.parse_line(line)
-                    if not parsed_data['store_code'].startswith(('BIAL', 'TFSB')):
-                        errors.append(f"Line {i}: Invalid store code format")
-                        continue
-                    transactions.append(parsed_data)
-                except Exception as e:
-                    errors.append(f"Line {i}: {str(e)}")
-        
-        if not transactions:
-            raise HTTPException(status_code=400, detail="No valid transactions found in file")
-            
         if transactions:
             collection = mongodb.db.transactions
-            result = await collection.insert_many(transactions)
-            monitor.increment_processed(len(result.inserted_ids))
-        
+            await collection.insert_many(transactions)
+            monitor.increment_processed(len(transactions))
+            
         response = {
             "status": "success" if not errors else "partial_success",
-            "message": f"Processed {len(transactions)} transactions",
+            "message": f"Processed {len(transactions)} transactions successfully" + 
+                      (f" with {len(errors)} errors" if errors else ""),
             "transaction_count": len(transactions)
         }
         
         if errors:
             response["errors"] = errors
-            response["error_count"] = len(errors)
             
+        monitor.update_status(response["message"])
         return response
         
     except Exception as e:
-        logger.error(f"Upload failed: {str(e)}")
-        monitor.update_status(f"Upload error: {str(e)}")
-        raise HTTPException(status_code=400, detail=str(e))
+        error_msg = f"Upload failed: {str(e)}"
+        monitor.update_status(error_msg)
+        logger.error(error_msg)
+        raise HTTPException(status_code=400, detail=error_msg)

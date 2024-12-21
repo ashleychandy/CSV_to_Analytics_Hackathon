@@ -2,8 +2,10 @@ from typing import List, Dict
 import pandas as pd
 from src.db.database import mongodb
 from sqlalchemy.orm import Session
-from src.models.database_models import TransactionModel as Transaction
+from src.models.database_models import TransactionModel
 from src.utils.status_monitor import ProcessingMonitor
+from sqlalchemy.dialects.sqlite import insert
+from sqlalchemy import select
 
 class ETLService:
     def __init__(self, monitor: ProcessingMonitor):
@@ -11,7 +13,6 @@ class ETLService:
         self.vendor_transformers = {
             'BIAL': self._transform_bial_data,
             'TFSB': self._transform_tfs_data,
-            # Add more vendor transformers
         }
 
     async def extract_from_mongodb(self) -> List[dict]:
@@ -72,42 +73,33 @@ class ETLService:
         return df
 
     async def load_to_sql(self, df: pd.DataFrame, db: Session):
-        """Load transformed data into SQL database with batch processing"""
+        """Load transformed data into SQL database with upsert logic"""
         self.monitor.update_status("Loading data to SQL database...")
         
         batch_size = 1000
         total_rows = len(df)
+        processed = 0
         
         try:
             for start in range(0, total_rows, batch_size):
                 end = min(start + batch_size, total_rows)
                 batch = df.iloc[start:end]
                 
-                transactions = [
-                    Transaction(
-                        store_code=row['store_code'],
-                        store_display_name=row['store_display_name'],
-                        trans_date=row['trans_date'],
-                        trans_time=row['trans_time'],
-                        trans_no=row['trans_no'],
-                        till_no=row['till_no'],
-                        discount_header=row['discount_header'],
-                        tax_header=row['tax_header'],
-                        net_sales_header_values=row['net_sales_header_values'],
-                        quantity=row['quantity'],
-                        trans_type=row['trans_type'],
-                        id_key=row['id_key'],
-                        tender=row['tender'],
-                        dm_load_date=row['dm_load_date'],
-                        dm_load_delta_id=row['dm_load_delta_id']
+                # Convert batch to list of dictionaries
+                records = batch.to_dict('records')
+                
+                # Upsert each record
+                for record in records:
+                    stmt = insert(TransactionModel).values(record)
+                    stmt = stmt.on_conflict_do_update(
+                        index_elements=['trans_no'],
+                        set_=record
                     )
-                    for _, row in batch.iterrows()
-                ]
+                    db.execute(stmt)
                 
-                db.bulk_save_objects(transactions)
+                processed += len(batch)
+                self.monitor.update_status(f"Loaded {processed}/{total_rows} records...")
                 db.commit()
-                
-                self.monitor.update_status(f"Loaded {end}/{total_rows} records...")
                 
         except Exception as e:
             db.rollback()
