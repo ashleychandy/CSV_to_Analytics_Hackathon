@@ -1,0 +1,100 @@
+2024-12-21 12:04:43,667 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:04:45,549 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:04:45,550 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:04:47,631 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:04:49,624 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:04:49,625 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:05:05,266 - src.main - ERROR - Failed to clear transactions: 'ProcessingMonitor' object has no attribute 'reset_processed_count'
+2024-12-21 12:05:13,075 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:06:00,048 - src.main - ERROR - Failed to clear transactions: 'ProcessingMonitor' object has no attribute 'reset_processed_count'
+2024-12-21 12:06:17,696 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:06:29,171 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:06:31,029 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:06:31,030 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:06:36,045 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:06:37,928 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:06:37,928 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:06:42,905 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:07:43,976 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:07:45,757 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:07:45,758 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:08:17,636 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:08:19,351 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:08:19,353 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:08:26,250 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:08:27,924 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:08:27,925 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:08:56,310 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:08:58,108 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:08:58,108 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:09:05,334 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:09:07,189 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:09:07,190 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:09:12,524 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:09:14,322 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:09:14,324 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:09:24,105 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:09:25,770 - src.services.etl_service - WARNING - Found 2 duplicate transactions
+2024-12-21 12:09:25,774 - src.services.etl_service - ERROR - Transform error: ufunc 'add' did not contain a loop with signature matching types (dtype('<U32'), dtype('<U32')) -> dtype('<U32')
+2024-12-21 12:09:25,775 - src.main - ERROR - ETL process failed: Transform error: ufunc 'add' did not contain a loop with signature matching types (dtype('<U32'), dtype('<U32')) -> dtype('<U32')
+2024-12-21 12:11:20,622 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:11:22,420 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:11:22,420 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:11:34,345 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:11:36,465 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:11:36,466 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:11:46,418 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:11:48,022 - src.services.etl_service - ERROR - Error dropping temporary table: object CursorResult can't be used in 'await' expression
+2024-12-21 12:11:52,036 - src.services.etl_service - ERROR - Error dropping temporary table: object CursorResult can't be used in 'await' expression
+2024-12-21 12:11:56,034 - src.services.etl_service - ERROR - Error dropping temporary table: object CursorResult can't be used in 'await' expression
+2024-12-21 12:14:07,942 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:14:09,582 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:14:09,583 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:14:18,853 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:14:20,838 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:14:20,838 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:14:32,608 - src.utils.csv_parser - ERROR - CSV parsing error: Missing required columns: ['store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']. Available columns: ["STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE"]. Please ensure your CSV file has all required columns: ['store_code', 'store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']
+2024-12-21 12:14:34,294 - src.utils.csv_parser - ERROR - CSV parsing error: Missing required columns: ['store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']. Available columns: ["STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE"]. Please ensure your CSV file has all required columns: ['store_code', 'store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']
+2024-12-21 12:15:00,968 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:15:06,672 - src.services.etl_service - ERROR - Error dropping temporary table: A transaction is already begun on this Session.
+2024-12-21 12:15:10,685 - src.services.etl_service - ERROR - Error dropping temporary table: A transaction is already begun on this Session.
+2024-12-21 12:15:14,701 - src.services.etl_service - ERROR - Error dropping temporary table: A transaction is already begun on this Session.
+2024-12-21 12:17:10,915 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:17:12,910 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:17:12,910 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:17:17,837 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:17:19,453 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:17:21,354 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:17:30,133 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:17:33,031 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:17:39,548 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:17:43,127 - src.main - ERROR - Failed to connect to MongoDB: 'MongoDB' object has no attribute 'connect_to_mongodb'
+2024-12-21 12:18:26,452 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:18:26,452 - src.main - INFO - Connected to MongoDB
+2024-12-21 12:18:29,071 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:18:29,071 - src.main - INFO - Disconnected from MongoDB
+2024-12-21 12:18:30,964 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:18:42,541 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:18:44,480 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:18:45,244 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:18:46,937 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:18:50,645 - src.main - ERROR - Failed to clear transactions: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:19:19,799 - src.utils.csv_parser - ERROR - CSV parsing error: Missing required columns: ['store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']. Available columns: ["STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE"]. Please ensure your CSV file has all required columns: ['store_code', 'store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']
+2024-12-21 12:19:37,980 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:19:39,946 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:19:43,992 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:19:46,360 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:19:48,475 - src.main - ERROR - Failed to clear transactions: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:19:55,438 - src.utils.csv_parser - ERROR - CSV parsing error: Missing required columns: ['store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']. Available columns: ["STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE", "STORE_CODE"]. Please ensure your CSV file has all required columns: ['store_code', 'store_display_name', 'trans_date', 'trans_time', 'trans_no', 'net_sales_header_values', 'discount_header', 'tax_header']
+2024-12-21 12:20:45,567 - src.services.etl_service - ERROR - MongoDB extraction error: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:20:49,579 - src.services.etl_service - ERROR - MongoDB extraction error: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:20:53,587 - src.services.etl_service - ERROR - MongoDB extraction error: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:20:53,589 - src.main - ERROR - ETL process failed: RetryError[<Future at 0x13e4a2e0a30 state=finished raised NotImplementedError>]
+2024-12-21 12:22:44,853 - src.main - ERROR - Failed to clear transactions: Database objects do not implement truth value testing or bool(). Please compare with None instead: database is not None
+2024-12-21 12:22:53,073 - src.utils.csv_parser - INFO - Successfully parsed 2 transactions with 0 errors
+2024-12-21 12:22:53,073 - src.main - WARNING - Upload completed with 2 errors
+2024-12-21 12:23:51,999 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:23:53,999 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:24:01,956 - src.db.database - INFO - Disconnected from MongoDB
+2024-12-21 12:24:03,584 - src.db.database - INFO - Connected to MongoDB
+2024-12-21 12:24:21,065 - src.db.database - INFO - Disconnected from MongoDB

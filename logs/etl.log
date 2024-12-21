@@ -1,0 +1,46 @@
+2024-12-21 12:27:32,654 - __main__ - INFO - Processing file: sample_transactions.csv
+2024-12-21 12:27:32,660 - services.etl_service - INFO - Successfully extracted 5 records from data/input\sample_transactions.csv
+2024-12-21 12:27:32,666 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:27:32,672 - services.etl_service - INFO - Successfully loaded 5 records into database
+2024-12-21 12:27:32,672 - services.etl_service - INFO - ETL process completed successfully for data/input\sample_transactions.csv
+2024-12-21 12:27:32,672 - __main__ - INFO - Successfully processed sample_transactions.csv
+2024-12-21 12:36:42,371 - services.etl_service - INFO - Successfully extracted 2 records from data\input\smalldata.csv
+2024-12-21 12:36:42,386 - services.etl_service - INFO - Successfully transformed 2 records
+2024-12-21 12:36:42,389 - services.etl_service - ERROR - Error loading data into database: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '00:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:36:42,390 - services.etl_service - ERROR - ETL process failed: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '00:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:38:56,812 - services.etl_service - INFO - Successfully extracted 5 records from data\input\sample_transactions.csv
+2024-12-21 12:38:56,817 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:38:56,818 - services.etl_service - ERROR - Error loading data into database: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:38:56,819 - services.etl_service - ERROR - ETL process failed: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:39:00,274 - services.etl_service - INFO - Successfully extracted 5 records from data/input\sample_transactions.csv
+2024-12-21 12:39:00,279 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:39:00,280 - services.etl_service - ERROR - Error loading data into database: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:39:00,281 - services.etl_service - ERROR - ETL process failed: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:39:17,890 - services.etl_service - INFO - Successfully extracted 5 records from data\input\sample_transactions.csv
+2024-12-21 12:39:17,896 - services.etl_service - INFO - Successfully transformed 5 records
+2024-12-21 12:39:17,900 - services.etl_service - ERROR - Error loading data into database: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2024-12-21 12:39:17,901 - services.etl_service - ERROR - ETL process failed: (sqlite3.IntegrityError) UNIQUE constraint failed: pos_transactions.id_key
+[SQL: INSERT INTO pos_transactions (store_code, store_display_name, trans_date, trans_time, trans_no, till_no, discount_header, tax_header, net_sales_header_values, quantity, trans_type, id_key, tender, dm_load_date, dm_load_delta_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id]
+[parameters: ('BIAL0128', 'TFS BLR Lounge-East Pier', '2024-09-13 00:00:00.000000', '0:08:28', '00IDB-1000021978', 'POS2', 0.0, 0.0, 910.0, 1, 0, 1398249674, nan, '38:00.6', 6883)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)

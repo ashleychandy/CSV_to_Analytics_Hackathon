@@ -1,61 +1,71 @@
-async function runETL() {
-  const button = document.querySelector(".actions button");
-  button.disabled = true;
-  button.textContent = "Processing...";
-
-  try {
-    const response = await fetch("/api/v1/etl/run", {
-      method: "POST",
-    });
-    const data = await response.json();
-
-    document.getElementById("status").textContent = data.message;
-  } catch (error) {
-    document.getElementById("status").textContent = `Error: ${error.message}`;
-  } finally {
-    button.disabled = false;
-    button.textContent = "Run ETL Process";
-  }
+// Update status periodically
+function updateStatus() {
+  fetch("/api/status")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("status").textContent = data.status;
+      document.getElementById("processed-count").textContent =
+        data.processed_count;
+      document.getElementById("processing-time").textContent =
+        data.processing_time + "s";
+      document.getElementById("last-update").textContent = data.last_update
+        ? new Date(data.last_update).toLocaleString()
+        : "Never";
+    })
+    .catch((error) => console.error("Error fetching status:", error));
 }
 
-// Update status and metrics every 5 seconds
-setInterval(async () => {
-  const response = await fetch("/api/v1/status");
-  const data = await response.json();
+// Run ETL process
+function runETL() {
+  fetch("/api/process", { method: "POST" })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("ETL process started:", data);
+      updateStatus();
+    })
+    .catch((error) => {
+      console.error("Error starting ETL process:", error);
+      alert("Error starting ETL process: " + error.message);
+    });
+}
 
-  document.getElementById("status").textContent = data.status;
-  document.getElementById("processed-count").textContent = data.processed_count;
-  document.getElementById(
-    "processing-time"
-  ).textContent = `${data.processing_time.toFixed(2)}s`;
-  document.getElementById("last-update").textContent = data.last_update
-    ? new Date(data.last_update).toLocaleString()
-    : "Never";
-}, 5000);
-
-document.getElementById("upload-form").addEventListener("submit", async (e) => {
+// Handle file upload
+document.getElementById("upload-form").addEventListener("submit", function (e) {
   e.preventDefault();
+
   const fileInput = document.getElementById("csv-file");
   const file = fileInput.files[0];
+
   if (!file) {
-    document.getElementById("upload-status").textContent =
-      "Please select a file";
+    alert("Please select a file to upload");
     return;
   }
 
   const formData = new FormData();
   formData.append("file", file);
 
-  try {
-    const response = await fetch("/api/v1/transactions/upload", {
-      method: "POST",
-      body: formData,
+  document.getElementById("upload-status").textContent = "Uploading...";
+
+  fetch("/api/upload", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("upload-status").textContent =
+        "Upload successful!";
+      updateStatus();
+      fileInput.value = ""; // Clear the file input
+    })
+    .catch((error) => {
+      console.error("Error uploading file:", error);
+      document.getElementById("upload-status").textContent =
+        "Upload failed: " + error.message;
     });
-    const data = await response.json();
-    document.getElementById("upload-status").textContent = data.message;
-  } catch (error) {
-    document.getElementById(
-      "upload-status"
-    ).textContent = `Upload failed: ${error.message}`;
-  }
 });
+
+// Update status every 5 seconds
+setInterval(updateStatus, 5000);
+
+// Initial status update
+updateStatus();

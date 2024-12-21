@@ -5,6 +5,8 @@ class Settings(BaseSettings):
     MONGODB_URI: str = "mongodb://localhost:27017"
     DEBUG: bool = True
     API_PORT: int = 8000
+    API_USERNAME: str = "admin"
+    API_PASSWORD: str = "admin"
 
     class Config:
         env_file = ".env"

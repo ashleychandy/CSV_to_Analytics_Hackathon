@@ -1,12 +1,31 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="pos-revenue",
+    name="etl-service",
     version="0.1",
     packages=find_packages(),
-    entry_points={
-        'console_scripts': [
-            'pos=src.cli:app',
-        ],
-    },
+    install_requires=[
+        "fastapi==0.104.1",
+        "uvicorn==0.24.0",
+        "motor==3.1.1",
+        "pymongo==4.3.3",
+        "pytest==7.4.3",
+        "httpx==0.25.1",
+        "rich==13.7.0",
+        "typer==0.9.0",
+        "python-dotenv==1.0.0",
+        "pydantic-settings==2.1.0",
+        "sqlalchemy==2.0.23",
+        "pandas==2.1.4",
+        "numpy==1.26.2",
+        "python-dateutil==2.8.2",
+        "pytz==2023.3.post1",
+        "openpyxl==3.1.2",
+        "numexpr>=2.8.0",
+        "bottleneck>=1.3.4",
+        "python-multipart",
+        "jinja2",
+        "aiosqlite"
+    ],
+    python_requires=">=3.9",
 ) 
