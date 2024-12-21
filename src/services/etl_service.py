@@ -3,7 +3,9 @@ import logging
 from datetime import datetime
 from sqlalchemy.orm import Session
 from sqlalchemy.dialects.sqlite import insert
-from models.pos_transaction import POSTransaction
+from src.models.pos_transaction import POSTransaction
+from src.db.database import mongodb
+from src.services.data_sync_service import DataSyncService
 from typing import List, Dict, Any
 import os
 
@@ -12,6 +14,7 @@ logger = logging.getLogger(__name__)
 class ETLService:
     def __init__(self, db: Session):
         self.db = db
+        self.sync_service = DataSyncService(db)
 
     def extract_from_csv(self, file_path: str) -> pd.DataFrame:
         """Extract data from CSV file"""
@@ -41,58 +44,76 @@ class ETLService:
             # Convert to list of dictionaries with lowercase keys
             records = df.rename(columns=lambda x: x.lower()).to_dict('records')
             
+            # Add processed flag for MongoDB tracking
+            for record in records:
+                record['processed'] = False
+                record['trans_date'] = record['trans_date'].isoformat()
+            
             logger.info(f"Successfully transformed {len(records)} records")
             return records
         except Exception as e:
             logger.error(f"Error transforming data: {str(e)}")
             raise
 
-    def load_data(self, records: List[Dict[str, Any]]) -> None:
-        """Load the transformed data into the database with upsert logic"""
+    async def load_to_mongodb(self, records: List[Dict[str, Any]]) -> int:
+        """Load the transformed data into MongoDB"""
         try:
-            for record in records:
-                # Check if record with this id_key exists
-                existing = self.db.query(POSTransaction).filter_by(id_key=record['id_key']).first()
-                
-                if existing:
-                    # Update existing record
-                    for key, value in record.items():
-                        setattr(existing, key, value)
-                else:
-                    # Create new record
-                    pos_transaction = POSTransaction(
-                        store_code=record['store_code'],
-                        store_display_name=record['store_display_name'],
-                        trans_date=record['trans_date'],
-                        trans_time=record['trans_time'],
-                        trans_no=record['trans_no'],
-                        till_no=record['till_no'],
-                        discount_header=record['discount_header'],
-                        tax_header=record['tax_header'],
-                        net_sales_header_values=record['net_sales_header_values'],
-                        quantity=record['quantity'],
-                        trans_type=record['trans_type'],
-                        id_key=record['id_key'],
-                        tender=record.get('tender'),
-                        dm_load_date=record['dm_load_date'],
-                        dm_load_delta_id=record['dm_load_delta_id']
-                    )
-                    self.db.add(pos_transaction)
+            # Ensure MongoDB is connected
+            await mongodb.ensure_connected()
             
-            self.db.commit()
-            logger.info(f"Successfully loaded {len(records)} records into database")
+            loaded_count = 0
+            failed_count = 0
+            
+            for record in records:
+                try:
+                    success = await mongodb.insert_raw_transaction(record)
+                    if success:
+                        loaded_count += 1
+                    else:
+                        failed_count += 1
+                except Exception as e:
+                    logger.error(f"Error inserting record: {str(e)}")
+                    failed_count += 1
+            
+            if failed_count > 0:
+                logger.warning(f"Failed to load {failed_count} records")
+            
+            logger.info(f"Successfully loaded {loaded_count} records into MongoDB")
+            return loaded_count
         except Exception as e:
-            self.db.rollback()
-            logger.error(f"Error loading data into database: {str(e)}")
+            logger.error(f"Error loading data into MongoDB: {str(e)}")
             raise
 
-    def process_file(self, file_path: str) -> None:
+    async def process_file(self, file_path: str) -> Dict[str, Any]:
         """Process the entire ETL pipeline for a file"""
         try:
+            # Extract
             df = self.extract_from_csv(file_path)
+            
+            # Transform
             records = self.transform_data(df)
-            self.load_data(records)
-            logger.info(f"ETL process completed successfully for {file_path}")
+            
+            # Load to MongoDB
+            loaded_count = await self.load_to_mongodb(records)
+            
+            if loaded_count == 0:
+                raise Exception("No records were loaded into MongoDB")
+            
+            # Sync to SQLite
+            sync_result = await self.sync_service.sync_transactions(batch_size=loaded_count)
+            
+            result = {
+                "file": os.path.basename(file_path),
+                "records_extracted": len(df),
+                "records_transformed": len(records),
+                "records_loaded_mongodb": loaded_count,
+                "records_synced_sqlite": sync_result["synced"],
+                "sync_errors": sync_result["errors"]
+            }
+            
+            logger.info(f"ETL process completed successfully for {file_path}: {result}")
+            return result
+            
         except Exception as e:
             logger.error(f"ETL process failed: {str(e)}")
             raise

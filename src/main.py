@@ -1,6 +1,6 @@
 import os
 import logging
-from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends
+from fastapi import FastAPI, Request, File, UploadFile, HTTPException, Depends, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy import create_engine, func
@@ -12,6 +12,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import json
 from datetime import datetime
 from typing import List, Dict
+from db.database import get_db, mongodb
+from config.settings import settings
+import asyncio
+from fastapi.responses import HTMLResponse, JSONResponse
 
 # Configure logging
 logging.basicConfig(
@@ -26,7 +30,11 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Initialize FastAPI
-app = FastAPI()
+app = FastAPI(
+    title=settings.api_title,
+    description=settings.api_description,
+    version=settings.api_version
+)
 
 # Add CORS middleware
 app.add_middleware(
@@ -83,10 +91,41 @@ class ETLStatus:
 
 etl_status = ETLStatus()
 
+# Background sync task
+async def sync_data_periodically():
+    """Background task to sync data from MongoDB to SQLite periodically"""
+    while True:
+        try:
+            db = next(get_db())
+            etl_service = ETLService(db)
+            result = await etl_service.sync_service.sync_transactions(settings.batch_size)
+            logger.info(f"Periodic sync completed: {result}")
+        except Exception as e:
+            logger.error(f"Error in periodic sync: {str(e)}")
+        finally:
+            if 'db' in locals():
+                db.close()
+        await asyncio.sleep(settings.sync_interval)
+
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database on startup"""
-    init_db()
+    """Initialize MongoDB connection and start background sync task"""
+    try:
+        await mongodb.connect()
+        asyncio.create_task(sync_data_periodically())
+        logger.info("Application startup completed")
+    except Exception as e:
+        logger.error(f"Error during startup: {str(e)}")
+        raise
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Close MongoDB connection"""
+    try:
+        await mongodb.disconnect()
+        logger.info("Application shutdown completed")
+    except Exception as e:
+        logger.error(f"Error during shutdown: {str(e)}")
 
 # Routes
 @app.get("/")
@@ -110,34 +149,81 @@ async def get_status():
     }
 
 @app.post("/api/upload")
-async def upload_file(file: UploadFile = File(...), db: Session = Depends(get_db)):
-    """Upload and process a CSV file"""
-    if not file.filename.endswith('.csv'):
-        raise HTTPException(status_code=400, detail="Only CSV files are allowed")
-
+async def upload_file(
+    file: UploadFile = File(...),
+    background_tasks: BackgroundTasks = None,
+    db: Session = Depends(get_db)
+):
+    """Handle file upload and trigger ETL process"""
     try:
-        # Save the file
-        file_path = os.path.join("data", "input", file.filename)
-        os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        
-        content = await file.read()
-        with open(file_path, "wb") as f:
-            f.write(content)
+        # Validate file extension
+        if not file.filename.lower().endswith('.csv'):
+            return JSONResponse(
+                status_code=400,
+                content={"status": "error", "message": "Only CSV files are allowed"}
+            )
 
-        # Process the file
-        start_time = datetime.now()
-        etl_status.update("Processing file...")
+        # Validate file size
+        file_size = 0
+        chunk_size = 8192  # 8KB chunks
+        content = bytearray()
         
-        etl_service = ETLService(db)
-        etl_service.process_file(file_path)
-        
-        processing_time = (datetime.now() - start_time).total_seconds()
-        etl_status.update("Completed", time=processing_time)
+        while True:
+            chunk = await file.read(chunk_size)
+            if not chunk:
+                break
+            file_size += len(chunk)
+            if file_size > settings.max_file_size:
+                return JSONResponse(
+                    status_code=400,
+                    content={"status": "error", "message": f"File size exceeds maximum limit of {settings.max_file_size / (1024*1024)}MB"}
+                )
+            content.extend(chunk)
 
-        return {"message": "File processed successfully"}
+        # Save file
+        os.makedirs(settings.upload_dir, exist_ok=True)
+        file_path = os.path.join(settings.upload_dir, file.filename)
+        
+        with open(file_path, "wb") as buffer:
+            buffer.write(content)
+
+        # Process file
+        try:
+            etl_service = ETLService(db)
+            result = await etl_service.process_file(file_path)
+            
+            return JSONResponse(
+                status_code=200,
+                content={
+                    "status": "success",
+                    "message": "File processed successfully",
+                    "details": result
+                }
+            )
+        except Exception as e:
+            logger.error(f"Error processing file: {str(e)}")
+            # Clean up the file if processing fails
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "status": "error",
+                    "message": "Error processing file",
+                    "details": str(e)
+                }
+            )
+
     except Exception as e:
-        etl_status.update(f"Error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Error handling upload: {str(e)}")
+        return JSONResponse(
+            status_code=500,
+            content={
+                "status": "error",
+                "message": "Internal Server Error",
+                "details": str(e)
+            }
+        )
 
 @app.post("/api/process")
 async def process_files(db: Session = Depends(get_db)):
