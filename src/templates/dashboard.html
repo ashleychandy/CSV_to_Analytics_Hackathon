@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ETL Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', path='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ETL Process Monitor</h1>
+
+      <div class="status-panel">
+        <h2>Current Status</h2>
+        <div id="status">{{ status }}</div>
+      </div>
+
+      <div class="actions">
+        <button onclick="runETL()">Run ETL Process</button>
+      </div>
+
+      <div class="metrics">
+        <h2>System Metrics</h2>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <h3>Processed Records</h3>
+            <div id="processed-count">0</div>
+          </div>
+          <div class="metric-card">
+            <h3>Processing Time</h3>
+            <div id="processing-time">0s</div>
+          </div>
+          <div class="metric-card">
+            <h3>Last Update</h3>
+            <div id="last-update">Never</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload-panel">
+        <h2>Upload Transactions</h2>
+        <form id="upload-form" enctype="multipart/form-data">
+          <input type="file" id="csv-file" accept=".csv" />
+          <button type="submit">Upload CSV</button>
+        </form>
+        <div id="upload-status"></div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', path='js/dashboard.js') }}"></script>
+  </body>
+</html>
